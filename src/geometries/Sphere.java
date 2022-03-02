@@ -4,20 +4,31 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- * It implements the Geometry interface.
+ * This class implements the Geometry interface.
+ *
+ * @author Amiad Korman & Omer Dayan
  */
 public class Sphere implements Geometry{
-    private Point _center;
-    private double _radius;
+    final private Point _center;
+    final private double _radius;
 
-    // A constructor.
-    public Sphere(Point _center, double _radius) {
-        this._center = _center;
-        this._radius = _radius;
+    /**
+     * Constructor to initialize Sphere based object with its center point and radius
+     *
+     * @param center
+     * @param radius
+     */
+    public Sphere(Point center, double radius) {
+        this._center = center;
+        this._radius = radius;
     }
 
+    /**
+     * Overrides the toString method in the Object class
+     *
+     * @return string that describe the sphere
+     */
     @Override
-    // Overriding the toString method of the Object class.
     public String toString() {
         return "Sphere{" +
                 "_center=" + _center +
@@ -25,8 +36,13 @@ public class Sphere implements Geometry{
                 '}';
     }
 
+    /**
+     * implementation of getNormal from Geometry
+     *
+     * @param point
+     * @return normal vector to the sphere in point
+     */
     @Override
-    // A method that returns a Vector.
     public Vector getNormal(Point point) {
         return null;
     }

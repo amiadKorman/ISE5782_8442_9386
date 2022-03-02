@@ -5,15 +5,28 @@ package primitives;
 
 import java.util.Objects;
 
+/**
+ * @author Amiad Korman & Omer Dayan
+ */
 public class Point {
     final Double3 _xyz;
 
-    // This is a constructor. It is a special method that is called when an object is created.
+    /**
+     * Constructor to initialize Point based object with Double3 value
+     *
+     * @param xyz Double3 value
+     */
     public Point(Double3 xyz) {
         _xyz = xyz;
     }
 
-    // This is a constructor. It is a special method that is called when an object is created.
+    /**
+     * Constructor to initialize Point based object with its three number values
+     *
+     * @param x first number value
+     * @param y second number value
+     * @param z third number value
+     */
     public Point(double x, double y, double z) {
         _xyz = new Double3(x, y, z);
     }
@@ -25,11 +38,10 @@ public class Point {
      * @return The distance squared between the two points.
      */
     public double distanceSquared(Point point) {
-        double x = _xyz.d1 - point._xyz.d1;
-        double y = _xyz.d2 - point._xyz.d2;
-        double z = _xyz.d3 - point._xyz.d3;
+        Double3 temp = _xyz.subtract(point._xyz);
+        temp = temp.product(temp);
 
-        return x * x + y * y + z * z;
+        return temp.d1 + temp.d2 + temp.d3;
     }
 
     /**

@@ -5,20 +5,49 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- * It creates a tube.
+ * This class creates a tube.
+ *
+ * @author Amiad Korman & Omer Dayan
  */
 public class Tube implements Geometry{
-    protected Ray _axisRay;
-    protected double _radius;
+    final protected Ray _axisRay;
+    final protected double _radius;
 
-    // Creating a constructor for the class.
-    public Tube(Ray _axisRay, double _radius) {
-        this._axisRay = _axisRay;
-        this._radius = _radius;
+    /**
+     * Constructor to initialize Tube based object with its
+     *
+     * @param axisRay of the Tube
+     * @param radius of the Tube
+     */
+    public Tube(Ray axisRay, double radius) {
+        _axisRay = axisRay;
+        _radius = radius;
     }
 
+    /**
+     * Returns the axis ray
+     *
+     * @return A ray that is perpendicular to the axis of the cylinder.
+     */
+    public Ray getAxisRay() {
+        return _axisRay;
+    }
+
+    /**
+     * Returns the radius of the Tube
+     *
+     * @return The radius of the Tube.
+     */
+    public double getRadius() {
+        return _radius;
+    }
+
+    /**
+     * Overrides the toString method in the Object class
+     *
+     * @return string that describe the tube
+     */
     @Override
-    // Overriding the toString method of the superclass.
     public String toString() {
         return "Tube{" +
                 "_axisRay=" + _axisRay +
@@ -26,8 +55,13 @@ public class Tube implements Geometry{
                 '}';
     }
 
+    /**
+     * implementation of getNormal from Geometry
+     *
+     * @param point
+     * @return normal vector to the tube in point
+     */
     @Override
-    // Returning a null vector.
     public Vector getNormal(Point point) {
         return null;
     }

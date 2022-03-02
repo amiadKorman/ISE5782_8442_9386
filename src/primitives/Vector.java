@@ -1,8 +1,16 @@
 package primitives;
 
+/**
+ * @author Amiad Korman & Omer Dayan
+ */
 public class Vector extends Point{
-
-    // A constructor that takes three double arguments and calls the super constructor with the three arguments.
+    /**
+     * Constructor to initialize Vector based object with its three number values
+     *
+     * @param x first number value
+     * @param y second number value
+     * @param z third number value
+     */
     public Vector(double x, double y, double z) {
         super(x, y, z);
         if(_xyz.equals(Double3.ZERO)) {
@@ -10,7 +18,11 @@ public class Vector extends Point{
         }
     }
 
-    // A constructor that takes a Double3 object and calls the super constructor.
+    /**
+     * Constructor to initialize Vector based object with Double3 value
+     *
+     * @param xyz Double3 value
+     */
     public Vector(Double3 xyz) {
         super(xyz);
         if(_xyz.equals(Double3.ZERO)) {
@@ -28,6 +40,12 @@ public class Vector extends Point{
         return new Vector(_xyz.add(vector._xyz));
     }
 
+    /**
+     * This function takes a double and returns a new Vector with the xyz coordinates scaled by the double
+     *
+     * @param num The number to multiply the vector by.
+     * @return A new Vector object.
+     */
     public Vector scale(double num) {
         return new Vector(_xyz.scale(num));
     }
@@ -105,14 +123,14 @@ public class Vector extends Point{
     public String toString() {
         return "Vector " + _xyz;
     }
-    //polymorphizm
-//    @Override
-//    public boolean equals(Object o) {
-//        return super.equals(o);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return super.hashCode();
-//    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

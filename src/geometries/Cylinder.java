@@ -5,17 +5,23 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- * It extends the Tube class and implements the Geometry interface.
+ * This class extends the Tube class and implements the Geometry interface.
+ *
+ * @author Amiad Korman & Omer Dayan
  */
 public class Cylinder extends Tube implements Geometry{
+    final private double _height;
 
-    // Declaring a private variable named `height` of type `double`.
-    private double height;
-
-    // Creating a constructor for the Cylinder class.
-    public Cylinder(Ray _axisRay, double _radius, double height) {
-        super(_axisRay, _radius);
-        this.height = height;
+    /**
+     * Constructor to initialize Cylinder based object with its
+     *
+     * @param axisRay of the Cylinder
+     * @param radius of the Cylinder
+     * @param height of the Cylinder
+     */
+    public Cylinder(Ray axisRay, double radius, double height) {
+        super(axisRay, radius);
+       _height = height;
     }
 
     /**
@@ -24,11 +30,30 @@ public class Cylinder extends Tube implements Geometry{
      * @return The height of the rectangle.
      */
     public double getHeight() {
-        return height;
+        return _height;
     }
 
+    /**
+     * Overrides the toString method in the Object class
+     *
+     * @return string that describe the cylinder
+     */
     @Override
-    // Overriding the getNormal method of the Geometry interface.
+    public String toString() {
+        return "Cylinder{" +
+                "_height=" + _height +
+                ", _axisRay=" + _axisRay +
+                ", _radius=" + _radius +
+                '}';
+    }
+
+    /**
+     * implementation of getNormal from Geometry
+     *
+     * @param point
+     * @return normal vector to the cylinder in point
+     */
+    @Override
     public Vector getNormal(Point point) {
         return null;
     }
