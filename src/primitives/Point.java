@@ -1,11 +1,10 @@
-/**
- * A point is a point in 3D space
- */
 package primitives;
 
 import java.util.Objects;
 
 /**
+ * A point is a point in 3D space
+ *
  * @author Amiad Korman & Omer Dayan
  */
 public class Point {

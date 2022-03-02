@@ -3,6 +3,8 @@ package primitives;
 import java.util.Objects;
 
 /**
+ * Ray is a line that starts in specific point
+ *
  * @author Amiad Korman & Omer Dayan
  */
 public class Ray {

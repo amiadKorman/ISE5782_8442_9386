@@ -1,6 +1,8 @@
 package primitives;
 
 /**
+ * Vector is a line with direction and size
+ *
  * @author Amiad Korman & Omer Dayan
  */
 public class Vector extends Point{
