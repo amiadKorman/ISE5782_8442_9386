@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Amiad Korman & Omer Dayan
  */
 public class Point {
-    final Double3 _xyz;
+    final protected Double3 _xyz;
 
     /**
      * Constructor to initialize Point based object with Double3 value
