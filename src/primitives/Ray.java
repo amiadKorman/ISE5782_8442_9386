@@ -23,7 +23,7 @@ public class Ray {
     }
 
     /**
-     * Returns the value of the p0 field
+     * Getter for the value of the p0 field
      *
      * @return The xyz coordinates of the point p0.
      */
@@ -32,7 +32,7 @@ public class Ray {
     }
 
     /**
-     * Returns the direction of the ray
+     * Getter for the direction of the ray
      *
      * @return A Double3 object.
      */

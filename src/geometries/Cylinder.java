@@ -25,7 +25,7 @@ public class Cylinder extends Tube implements Geometry{
     }
 
     /**
-     * Returns the height of the rectangle
+     * Getter for the height of the rectangle
      *
      * @return The height of the rectangle.
      */

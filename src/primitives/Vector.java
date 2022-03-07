@@ -5,7 +5,7 @@ package primitives;
  *
  * @author Amiad Korman & Omer Dayan
  */
-public class Vector extends Point{
+public class Vector extends Point {
     /**
      * Constructor to initialize Vector based object with its three number values
      *
@@ -15,7 +15,7 @@ public class Vector extends Point{
      */
     public Vector(double x, double y, double z) {
         super(x, y, z);
-        if(_xyz.equals(Double3.ZERO)) {
+        if (_xyz.equals(Double3.ZERO)) {
             throw new IllegalArgumentException("Vector(0,0,0) is not valid");
         }
     }
@@ -27,7 +27,7 @@ public class Vector extends Point{
      */
     public Vector(Double3 xyz) {
         super(xyz);
-        if(_xyz.equals(Double3.ZERO)) {
+        if (_xyz.equals(Double3.ZERO)) {
             throw new IllegalArgumentException("Vector(0,0,0) is not valid");
         }
     }
@@ -59,15 +59,19 @@ public class Vector extends Point{
      * @return The dot product of the two vectors.
      */
     public double dotProduct(Vector v) {
-        double u1 = _xyz.d1;
-        double u2 = _xyz.d2;;
-        double u3 = _xyz.d3;;
+        double u1 = _xyz._d1;
+        double u2 = _xyz._d2;
 
-        double v1 = v._xyz.d1;
-        double v2 = v._xyz.d2;;
-        double v3 = v._xyz.d3;;
+        double u3 = _xyz._d3;
 
-        return (u1*v1 + u2*v2 + u3*v3);
+
+        double v1 = v._xyz._d1;
+        double v2 = v._xyz._d2;
+
+        double v3 = v._xyz._d3;
+
+
+        return (u1 * v1 + u2 * v2 + u3 * v3);
     }
 
     /**
@@ -77,13 +81,13 @@ public class Vector extends Point{
      * @return A new Vector object.
      */
     public Vector crossProduct(Vector v) {
-        double u1 = _xyz.d1;
-        double u2 = _xyz.d2;
-        double u3 = _xyz.d3;
+        double u1 = _xyz._d1;
+        double u2 = _xyz._d2;
+        double u3 = _xyz._d3;
 
-        double v1 = v._xyz.d1;
-        double v2 = v._xyz.d2;
-        double v3 = v._xyz.d3;
+        double v1 = v._xyz._d1;
+        double v2 = v._xyz._d2;
+        double v3 = v._xyz._d3;
 
         return new Vector(u2 * v3 - u3 * v2, u3 * v1 - u1 * v3, u1 * v2 - u2 * v1);
     }
@@ -94,9 +98,9 @@ public class Vector extends Point{
      * @return The length of the vector.
      */
     public double lengthSquared() {
-        double u1 = _xyz.d1;
-        double u2 = _xyz.d2;
-        double u3 = _xyz.d3;
+        double u1 = _xyz._d1;
+        double u2 = _xyz._d2;
+        double u3 = _xyz._d3;
 
         return u1 * u1 + u2 * u2 + u3 * u3;
     }

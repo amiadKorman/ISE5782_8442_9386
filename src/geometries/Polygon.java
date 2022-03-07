@@ -15,12 +15,12 @@ public class Polygon implements Geometry {
 	/**
 	 * List of polygon's vertices
 	 */
-	protected final List<Point> vertices;
+	protected final List<Point> _vertices;
 	/**
 	 * Associated plane in which the polygon lays
 	 */
-	protected final Plane plane;
-	private int size;
+	protected final Plane _plane;
+	private int _size;
 
 	/**
 	 * Polygon constructor based on vertices list. The list must be ordered by edge
@@ -46,15 +46,15 @@ public class Polygon implements Geometry {
 	public Polygon(Point... vertices) {
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
-		this.vertices = List.of(vertices);
+		_vertices = List.of(vertices);
 		// Generate the plane according to the first three vertices and associate the
 		// polygon with this plane.
 		// The plane holds the invariant normal (orthogonal unit) vector to the polygon
-		plane = new Plane(vertices[0], vertices[1], vertices[2]);
+		_plane = new Plane(vertices[0], vertices[1], vertices[2]);
 		if (vertices.length == 3)
 			return; // no need for more tests for a Triangle
 
-		Vector n = plane.getNormal();
+		Vector n = _plane.getNormal();
 
 		// Subtracting any subsequent points will throw an IllegalArgumentException
 		// because of Zero Vector if they are in the same point
@@ -81,22 +81,22 @@ public class Polygon implements Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
-		size = vertices.length;
+		_size = vertices.length;
 	}
 
 	@Override
 	// Overriding the `toString()` method of the `Object` class.
 	public String toString() {
 		return "Polygon{" +
-				"vertices=" + vertices +
-				", plane=" + plane +
-				", size=" + size +
+				"vertices=" + _vertices +
+				", plane=" + _plane +
+				", size=" + _size +
 				'}';
 	}
 
 	@Override
 	// Returning the normal vector of the plane associated with the polygon.
 	public Vector getNormal(Point point) {
-		return plane.getNormal();
+		return _plane.getNormal(point);
 	}
 }

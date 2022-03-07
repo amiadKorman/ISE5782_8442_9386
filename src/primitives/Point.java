@@ -40,7 +40,7 @@ public class Point {
         Double3 temp = _xyz.subtract(point._xyz);
         temp = temp.product(temp);
 
-        return temp.d1 + temp.d2 + temp.d3;
+        return temp._d1 + temp._d2 + temp._d3;
     }
 
     /**

@@ -25,7 +25,7 @@ public class Tube implements Geometry{
     }
 
     /**
-     * Returns the axis ray
+     * Getter for the axis ray
      *
      * @return A ray that is perpendicular to the axis of the cylinder.
      */
@@ -34,7 +34,7 @@ public class Tube implements Geometry{
     }
 
     /**
-     * Returns the radius of the Tube
+     * Getter for the radius of the Tube
      *
      * @return The radius of the Tube.
      */
