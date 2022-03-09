@@ -1,3 +1,11 @@
+/**
+ * Authors:
+ * Omer Dayan 312409386
+ * &
+ * Amiam Korman
+ */
+
+
 import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;

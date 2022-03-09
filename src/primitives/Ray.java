@@ -27,17 +27,17 @@ public class Ray {
      *
      * @return The xyz coordinates of the point p0.
      */
-    public Double3 getP0() {
-        return p0._xyz;
+    public Point getP0() {
+        return p0;
     }
 
     /**
      * Getter for the direction of the ray
      *
-     * @return A Double3 object.
+     * @return A Vector object.
      */
-    public Double3 getDir() {
-        return dir._xyz;
+    public Vector getDir() {
+        return dir;
     }
 
     @Override
