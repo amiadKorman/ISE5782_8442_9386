@@ -8,7 +8,9 @@ import primitives.Vector;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CylinderTest {
-
+    /**
+     * Test method for {@link geometries.Cylinder#getNormal(primitives.Point)}.
+     */
     @Test
     void testGetNormal() {
         Cylinder cylinder = new Cylinder(new Ray(new Point(0, 0, 0), new Vector(0, 0, 1)), 1, 10);

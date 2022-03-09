@@ -1,8 +1,6 @@
 package primitives;
 
 import org.junit.jupiter.api.Test;
-
-import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
@@ -35,7 +33,7 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link primitives.Vector#dotProduct(Vector)}.
+     * Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}.
      */
     @Test
     void testDotProduct() {
@@ -45,7 +43,9 @@ class VectorTest {
         assertEquals(-28, v1.dotProduct(v2), "ERROR: dotProduct() wrong value");
     }
 
-    /*** Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}***/
+    /***
+     * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}
+     */
     @Test
     void testCrossProduct() {
         Vector v1 = new Vector(1, 2, 3);
@@ -63,14 +63,14 @@ class VectorTest {
         assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
 
         // =============== Boundary Values Tests ==================
-        // TC11: test zero vector from cross-productof co-lined vectors
+        // TC11: test zero vector from cross-product of co-lined vectors
         Vector v3 = new Vector(-2, -4, -6);
         assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3),
                 "crossProduct() for parallel vectors does not throw an exception");
     }
 
     /**
-     * Test method for {@link Vector#lengthSquared()} (primitives.Vector)}.
+     * Test method for {@link primitives.Vector#lengthSquared()}.
      */
     @Test
     void testLengthSquared() {
@@ -79,7 +79,7 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link Vector#length()}.
+     * Test method for {@link primitives.Vector#length()}.
      */
     @Test
     void testLength() {
@@ -87,7 +87,7 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link Vector#normalize()}.
+     * Test method for {@link primitives.Vector#normalize()}.
      */
     @Test
     void testNormalized() {
