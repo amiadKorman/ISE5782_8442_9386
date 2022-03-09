@@ -13,7 +13,7 @@ class SphereTest {
      */
     @Test
     void testGetNormal() {
-        // ============ Equivalence Partitions Tests ==============//
+        // ============ Equivalence Partitions Tests ==============
         // TC01: tests for calculation of normal to the sphere//
         Sphere sphere = new Sphere(new Point(0, 0, 0), 5);
 
