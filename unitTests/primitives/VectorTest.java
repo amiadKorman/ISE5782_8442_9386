@@ -15,14 +15,17 @@ class VectorTest {
 
     @Test
     void testAdd() {
+        fail("Not yet implemented");
     }
 
     @Test
     void testScale() {
+        fail("Not yet implemented");
     }
 
     @Test
     void testDotProduct() {
+        fail("Not yet implemented");
     }
 
     /**
@@ -64,23 +67,27 @@ class VectorTest {
 
     @Test
     void testLength() {
+        fail("Not yet implemented");
     }
 
     @Test
     void testNormalize() {
+        fail("Not yet implemented");
     }
 
     @Test
     void add() {
+        fail("Not yet implemented");
     }
 
     @Test
     void scale() {
+        fail("Not yet implemented");
     }
 
     @Test
     void dotProduct() {
-
+        fail("Not yet implemented");
     }
 
     /**
@@ -113,13 +120,16 @@ class VectorTest {
 
     @Test
     void lengthSquared() {
+        fail("Not yet implemented");
     }
 
     @Test
     void length() {
+        fail("Not yet implemented");
     }
 
     @Test
     void normalize() {
+        fail("Not yet implemented");
     }
 }

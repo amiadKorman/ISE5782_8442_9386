@@ -2,9 +2,7 @@ package primitives;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Locale;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PointTest {
 
@@ -18,7 +16,7 @@ class PointTest {
     @Test
     void testDistanceSquared() {
         // ============ Equivalence Partitions Tests ==============//
-        assertEquals(3, p1.distanceSquared(p2), "Error: disanceSquared() wrong value");
+        assertEquals(3, p1.distanceSquared(p2), "Error: distanceSquared() wrong value");
     }
 
     /**
