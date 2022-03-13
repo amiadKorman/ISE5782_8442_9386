@@ -12,8 +12,9 @@ class VectorTest {
 
     @Test
     void testZero() {
-        assertThrows(IllegalArgumentException.class, () ->
-                new Vector(0, 0, 0), "ERROR: zero vector does not throw an exception");
+        // =============== Boundary Values Tests ==================
+        assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0),
+                "ERROR: zero vector does not throw an exception");
     }
 
     /**
@@ -21,7 +22,8 @@ class VectorTest {
      */
     @Test
     void testAdd() {
-        assertEquals(new Vector(1, 5, 1), v1.add(v3), "ERROR: add() function wrong value");
+        assertEquals(new Vector(1, 5, 1), v1.add(v3),
+                "ERROR: add() function wrong value");
     }
 
     /**
@@ -29,7 +31,8 @@ class VectorTest {
      */
     @Test
     void testScale() {
-        assertEquals(new Vector(2, 4, 6), v1.scale(2), "ERROR: scale()function wrong value");
+        assertEquals(new Vector(2, 4, 6), v1.scale(2),
+                "ERROR: scale()function wrong value");
     }
 
     /**
@@ -56,7 +59,8 @@ class VectorTest {
 
         // TC01: Test that length of cross-product is proper (orthogonal vectors taken
         // for simplicity)
-        assertEquals(v1.length() * v2.length(), vr.length(), 0.00001, "crossProduct() wrong result length");
+        assertEquals(v1.length() * v2.length(), vr.length(), 0.00001,
+                "crossProduct() wrong result length");
 
         // TC02: Test cross-product result orthogonality to its operands
         assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");

@@ -3,7 +3,7 @@ package primitives;
 import java.util.Objects;
 
 /**
- * A point is a point in 3D space
+ * class representing  a Point in 3D space
  *
  * @author Amiad Korman & Omer Dayan
  */
@@ -13,14 +13,14 @@ public class Point {
     /**
      * Constructor to initialize Point based object with Double3 value
      *
-     * @param xyz Double3 value
+     * @param xyz {@link Double3} value
      */
     public Point(Double3 xyz) {
         _xyz = xyz;
     }
 
     /**
-     * Constructor to initialize Point based object with its three number values
+     * primary Constructor to initialize Point based object with its three number values
      *
      * @param x first number value
      * @param y second number value
@@ -85,7 +85,7 @@ public class Point {
      * Given a point, return a vector that is the difference between the point and the current point
      *
      * @param point the point to subtract from this vector
-     * @return A new Vector object.
+     * @return A new {@link Vector} object.
      */
     public Vector subtract(Point point) {
         return new Vector(_xyz.subtract(point._xyz));

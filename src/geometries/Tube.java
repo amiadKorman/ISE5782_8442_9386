@@ -4,6 +4,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 /**
  * This class creates a tube.
  *
@@ -80,5 +82,10 @@ public class Tube implements Geometry{
         Vector normalVector = point.subtract(tubeCenterPoint).normalize();
 
         return normalVector;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }
