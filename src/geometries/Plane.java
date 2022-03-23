@@ -99,12 +99,12 @@ public class Plane implements Geometry {
     public List<Point> findIntersections(Ray ray) {
         Point P0 = ray.getP0();
         Vector v = ray.getDir();
+        Vector n = _normal;
+
 
         if(_q0.equals(P0)){
             return  null;
         }
-
-        Vector n = _normal;
 
         //denominator
         double nv = alignZero(n.dotProduct(v));
