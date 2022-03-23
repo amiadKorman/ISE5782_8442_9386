@@ -2,7 +2,6 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,13 +9,15 @@ import java.util.LinkedList;
 import java.util.List;
 /**
  * Composite class for all geometries object {@link Intersectable}
- *
  * @author Amiad Korman & Omer Dayan
- *
  */
 
+/**
+ * A collection of intersectables
+ */
 public class Geometries implements Intersectable{
 
+    // A private list of intersectables.
     private List<Intersectable> _intersectables;
 
     public Geometries() {
@@ -28,12 +29,15 @@ public class Geometries implements Intersectable{
         Collections.addAll(_intersectables, geometries);
     }
 
+    /**
+     * It takes an array of Intersectables and adds them to the list of Intersectables
+     */
     public void add( Intersectable...geometries){
         Collections.addAll(_intersectables, geometries);
-
     }
 
     @Override
+    // Returning the result of the intersection of the current instance with the ray.
     public List<Point> findIntersections(Ray ray) {
         List<Point> result = null;
         for(var item: _intersectables){
