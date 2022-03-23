@@ -111,4 +111,5 @@ class PlaneTest {
         assertNull(pl.findIntersections(new Ray(new Point(0, 0, 1), new Vector(1, 1, 0))),
                 "Must not be plane intersection");
     }
+
 }

@@ -2,9 +2,7 @@
  * A plane is a flat surface that extends infinitely in all directions.
  */
 package geometries;
-
 import java.util.List;
-
 import primitives.*;
 import static primitives.Util.*;
 
@@ -101,30 +99,25 @@ public class Plane implements Geometry {
         Vector v = ray.getDir();
         Vector n = _normal;
 
-
-        if(_q0.equals(P0)){
-            return  null;
-        }
-
-        //denominator
-        double nv = alignZero(n.dotProduct(v));
-
         // ray is lying in the plane axis
+        double nv= n.dotProduct(v);
+
+        //ray direction cannot be parallel to plane oriented
         if(isZero(nv)){
-            return null;
+            return  null;
         }
 
         Vector P0_Q0 = _q0.subtract(P0);
 
         //numerator
-        double nP0Q0  = alignZero(n.dotProduct(P0_Q0));
+        double nQMinusP0  = alignZero(n.dotProduct(P0_Q0));
 
         // t should  > 0
-        if (isZero(nP0Q0 )){
+        if (isZero(nQMinusP0 )){
             return null;
         }
 
-        double  t = alignZero(nP0Q0  / nv);
+        double  t = alignZero(nQMinusP0 / nv);
 
         // t should  > 0
         if (t <=0){
