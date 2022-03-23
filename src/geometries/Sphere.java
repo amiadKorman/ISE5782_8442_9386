@@ -51,6 +51,12 @@ public class Sphere implements Geometry{
         return v.normalize();
     }
 
+    /**
+     * implementation of getNormal from Geometry
+     *
+     * @param ray {@link Ray}  pointing toward the object
+     * @return List of intersection {@link Point}s
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         return null;

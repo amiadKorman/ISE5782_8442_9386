@@ -90,4 +90,31 @@ public class Point {
     public Vector subtract(Point point) {
         return new Vector(_xyz.subtract(point._xyz));
     }
+
+    /**
+     * Returns the x coordinate of the point
+     *
+     * @return The value of the x coordinate.
+     */
+    public double getX(){
+        return _xyz._d1;
+    }
+
+    /**
+     * Returns the y coordinate of the point
+     *
+     * @return The value of the y coordinate.
+     */
+    public double getY(){
+        return _xyz._d2;
+    }
+
+    /**
+     * Returns the z coordinate of the point
+     *
+     * @return The value of the z coordinate.
+     */
+    public double getZ(){
+        return _xyz._d3;
+    }
 }

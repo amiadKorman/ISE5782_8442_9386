@@ -1,6 +1,8 @@
 package geometries;
 
-import primitives.Point;
+import primitives.*;
+
+import java.util.List;
 
 /**
  * This class is a polygon with three points
@@ -20,4 +22,13 @@ public class Triangle extends Polygon implements Geometry{
         super(p1, p2, p3);
     }
 
+    /**
+     * implementation of getNormal from Geometry
+     *
+     * @param ray {@link Ray}  pointing toward the object
+     * @return List of intersection {@link Point}s
+     */
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
 }

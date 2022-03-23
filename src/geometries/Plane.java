@@ -89,6 +89,12 @@ public class Plane implements Geometry {
         return getNormal();
     }
 
+    /**
+     * implementation of getNormal from Geometry
+     *
+     * @param ray {@link Ray}  pointing toward the object
+     * @return List of intersection {@link Point}s
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         Point P0 = ray.getP0();

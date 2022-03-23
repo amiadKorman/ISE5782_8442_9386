@@ -24,4 +24,9 @@ class TriangleTest {
         assertEquals(new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point(0, 0, 1)),
                 "ERROR: The calculation of normal to the triangle is not calculated correctly");
     }
+
+    @Test
+    void testFindIntersections() {
+        fail("not implemented yet!");
+    }
 }
