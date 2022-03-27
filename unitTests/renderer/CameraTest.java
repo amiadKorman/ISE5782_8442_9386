@@ -13,6 +13,14 @@ import primitives.*;
  * @author Dan
  *
  */
+import org.junit.jupiter.api.Test;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
 class CameraTest {
     static final Point ZERO_POINT = new Point(0, 0, 0);
 
@@ -24,6 +32,7 @@ class CameraTest {
     void testConstructRay() {
         Camera camera = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, -1, 0))
                 .setVPDistance(10);
+        Camera camera = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, -1, 0)).setVPDistance(10);
         String badRay = "Bad ray";
 
         // ============ Equivalence Partitions Tests ==============
@@ -32,6 +41,7 @@ class CameraTest {
                 camera
                         .setVPSize(8, 8)
                         .constructRay(4, 4, 1, 1), badRay);
+                camera.setVPSize(8, 8).constructRay(4, 4, 1, 1), badRay);
 
         // =============== Boundary Values Tests ==================
         // BV01: 3X3 Center (1,1)
@@ -73,3 +83,4 @@ class CameraTest {
     }
 
 }
+
