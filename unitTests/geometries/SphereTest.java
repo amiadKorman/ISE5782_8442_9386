@@ -29,6 +29,20 @@ class SphereTest {
     void allFindIntersectionality(){
         testFindIntersections1();
         testFindIntersections2();
+        testFindIntersections3();
+        testFindIntersections4();
+        testFindIntersections5();
+        testFindIntersections6();
+        testFindIntersections7();
+        testFindIntersections8();
+        testFindIntersections9();
+        testFindIntersections10();
+        testFindIntersections11();
+        testFindIntersections12();
+        testFindIntersections13();
+        testFindIntersections14();
+        testFindIntersections15();
+        testFindIntersections16();
     }
 
     /**
@@ -82,7 +96,7 @@ class SphereTest {
     }
 
     @Test
-    void findIntersections3(){
+    void testFindIntersections3(){
         // TC03: Ray starts inside the sphere (1 point)
         Ray ray = new Ray( new Point(0.5,0,0),new Vector(1.5,0,0));
         assertEquals(List.of(new Point(2,0,0)), Sphere.findIntersections(ray));
@@ -90,7 +104,7 @@ class SphereTest {
 
 
     @Test
-    void findIntersections4(){
+    void testFindIntersections4(){
         // TC04: Ray starts after the sphere (0 points)
         Ray ray = new Ray(new Point(3,0,0), new Vector(1,0,0));
         assertNull(Sphere.findIntersections(ray));
@@ -101,7 +115,7 @@ class SphereTest {
     // **** Group: Ray's line crosses the sphere (but not the center)
 
     @Test
-    void findIntersections5(){
+    void testFindIntersections5(){
         // TC11: Ray starts at sphere and goes inside (1 points)
         Ray ray = new Ray(new Point(0,0,0), new Vector(2,2,0));
         assertEquals(List.of(new Point(1,1,0)) ,Sphere.findIntersections(ray));
@@ -109,7 +123,7 @@ class SphereTest {
 
 
     @Test
-    void findIntersections6(){
+    void testFindIntersections6(){
         // TC12: Ray starts at sphere and goes outside (0 points)
         Ray ray = new Ray(new Point(1,1,0), new Vector(2,2,0));
         assertNull(Sphere.findIntersections(ray));
@@ -117,44 +131,43 @@ class SphereTest {
 
     // **** Group: Ray's line goes through the center
     @Test
-    void findIntersections7(){
+    void testFindIntersections7(){
         // TC13: Ray starts before the sphere (2 points)
         Ray ray = new Ray(new Point(0,-2,0), new Vector(2,2,0));
         var result = Sphere.findIntersections(ray);
         assertEquals(2, result.size());
     }
 
-
     @Test
-    void findIntersections8() {
+    void testFindIntersections8() {
         // TC14: Ray starts at sphere and goes inside (1 points)
         Ray ray = new Ray(new Point(2, 0, 0), new Vector(-1, 0, 0));
         assertEquals(List.of(new Point(0, 0, 0)), Sphere.findIntersections(ray));
     }
 
     @Test
-    void findIntersections9() {
+    void testFindIntersections9() {
         // TC15: Ray starts inside (1 points)
         Ray ray = new Ray( new Point(0.59, 0, 0), new Vector(-0.59, 0, 0));
         assertEquals(List.of(new Point(0, 0, 0)), Sphere.findIntersections(ray));
     }
 
     @Test
-    void findIntersections10(){
+    void testFindIntersections10(){
         // TC16: Ray starts at the center (1 points)
         Ray ray = new Ray(new Point(1,0,0), new Vector(2,2,0));
         assertThrows(IllegalArgumentException.class, ()-> Sphere.findIntersections(ray));
     }
 
     @Test
-    void findIntersections11(){
+    void testFindIntersections11(){
         // TC17: Ray starts at sphere and goes outside (0 points)
         Ray ray = new Ray(new Point(2,0,0), new Vector(2,0,0));
         assertNull(Sphere.findIntersections(ray));
     }
 
     @Test
-    void findIntersections12(){
+    void testFindIntersections12(){
         // TC18: Ray starts after sphere (0 points)
         Ray ray = new Ray (new Point(3,0,0), new Vector(1,0,0));
         assertNull(Sphere.findIntersections(ray));
@@ -162,14 +175,14 @@ class SphereTest {
 
     // **** Group: Ray's line is tangent to the sphere (all tests 0 points)
     @Test
-    void findIntersections13(){
+    void testFindIntersections13(){
         // TC19: Ray starts before the tangent point
         Ray ray = new Ray( new Point(2,1,1), new Vector(-1,-1,0));
         assertNull(Sphere.findIntersections(ray));
     }
 
     @Test
-    void findIntersections14(){
+    void testFindIntersections14(){
         // TC20: Ray starts at the tangent point
         Ray ray = new Ray(new Point(1,0,1), new Vector(1,1,0));
         assertNull(Sphere.findIntersections(ray));
@@ -177,7 +190,7 @@ class SphereTest {
 
 
     @Test
-    void findIntersections15(){
+    void testFindIntersections15(){
         // TC21: Ray starts after the tangent point
         Ray ray = new Ray(new Point(2,1,1), new Vector(4,4,0));
         assertNull(Sphere.findIntersections(ray));
@@ -185,7 +198,7 @@ class SphereTest {
 
     // **** Group: Special cases
     @Test
-    void findIntersections16(){
+    void testFindIntersections16(){
         // TC22: Ray's line is outside, ray is orthogonal to ray start to sphere's center line
         Ray ray = new Ray(new Point(3,0,0), new Vector(0,0,1));
         assertNull(Sphere.findIntersections(ray));

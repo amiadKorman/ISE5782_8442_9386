@@ -88,7 +88,7 @@ public class Plane implements Geometry {
     }
 
     /**
-     * implementation of getNormal from Geometry
+     * implementation of findIntersections from Geometry
      *
      * @param ray {@link Ray}  pointing toward the object
      * @return List of intersection {@link Point}s

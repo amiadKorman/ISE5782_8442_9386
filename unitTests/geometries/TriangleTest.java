@@ -30,6 +30,10 @@ class TriangleTest {
     void allFindIntersectionality(){
         testFindIntersections1();
         testFindIntersections2();
+        testFindIntersections3();
+        testFindIntersections4();
+        testFindIntersections5();
+        testFindIntersections6();
     }
 
     /**
@@ -38,7 +42,7 @@ class TriangleTest {
     // ============ Equivalence Partitions Tests ==============
     //TC01: Inside polygon/triangle(1 Point)
     @Test
-    void findIntersections1() {
+    void testFindIntersections1() {
         Triangle triangle = new Triangle(
                 new Point(2, 0, 0),
                 new Point(0, 3, 0),
@@ -52,7 +56,7 @@ class TriangleTest {
 
     //TC02: Outside against edge(0 Point)
     @Test
-    void findIntersections2() {
+    void testFindIntersections2() {
         Triangle triangle = new Triangle(
                 new Point(2, 0, 0),
                 new Point(0, 3, 0),
@@ -63,7 +67,7 @@ class TriangleTest {
 
     //TC03: Outside against vertex(0 Point)
     @Test
-    void findIntersections3() {
+    void testFindIntersections3() {
         Triangle triangle = new Triangle(
                 new Point(2, 0, 0),
                 new Point(0, 3, 0),
@@ -77,7 +81,7 @@ class TriangleTest {
 
     //TC11: On edge(0 Point)
     @Test
-    void findIntersections4() {
+    void testFindIntersections4() {
         Triangle triangle = new Triangle(
                 new Point(2, 0, 0),
                 new Point(0, 3, 0),
@@ -88,7 +92,7 @@ class TriangleTest {
 
     //TC12: In vertex(0 Point)
     @Test
-    void findIntersections5() {
+    void testFindIntersections5() {
         Triangle triangle = new Triangle(
                 new Point(2, 0, 0),
                 new Point(0, 3, 0),
@@ -99,7 +103,7 @@ class TriangleTest {
 
     //TC13: On edge's continuation(0 Point)
     @Test
-    void findIntersections6() {
+    void testFindIntersections6() {
         Triangle triangle = new Triangle(
                 new Point(2, 0, 0),
                 new Point(0, 3, 0),

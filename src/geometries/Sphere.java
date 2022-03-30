@@ -6,6 +6,8 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+
 /**
  * This class implements the Geometry interface.
  *
@@ -59,6 +61,40 @@ public class Sphere implements Geometry{
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        return null;
+        Point p0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        if(p0.equals(_center)){
+            throw new IllegalArgumentException("p of Ray is the center of the sphere");
+        }
+
+        Vector u = _center.subtract(p0);
+        double tm = u.dotProduct(v);
+        double d = alignZero(Math.sqrt(u.lengthSquared() - (tm * tm) ));
+
+        if(d >= _radius){
+            return null; //  no points
+        }
+
+        double th = alignZero(Math.sqrt( (_radius * _radius) - (d * d) ));
+
+        double t1 = alignZero(tm - th);
+        double t2 = alignZero(tm + th);
+
+        if(t1 > 0 && t2 > 0){
+            Point p1 = ray.getPoint(t1);
+            Point p2 = ray.getPoint(t2);
+            return List.of(p1, p2);
+        }
+
+        if(t1 > 0){
+            return List.of(ray.getPoint(t1));
+        }
+        if(t2 > 0){
+            return List.of(ray.getPoint(t2));
+        }
+        else {
+            return null; // 0 points
+        }
     }
 }
