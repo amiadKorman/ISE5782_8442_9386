@@ -12,7 +12,7 @@ import java.util.List;
 public interface Intersectable {
     /**
      *
-     * @param ray {@link Ray}  pointing toward the object
+     * @param ray {@link Ray} pointing toward the object
      * @return List of intersection {@link Point}s
      */
     List<Point> findIntersections(Ray ray);

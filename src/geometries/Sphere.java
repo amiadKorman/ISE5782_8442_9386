@@ -24,8 +24,8 @@ public class Sphere implements Geometry{
      * @param radius
      */
     public Sphere(Point center, double radius) {
-        this._center = center;
-        this._radius = radius;
+        _center = center;
+        _radius = radius;
     }
 
     /**
@@ -69,11 +69,13 @@ public class Sphere implements Geometry{
         }
 
         Vector u = _center.subtract(p0);
-        double tm = u.dotProduct(v);
+
+        double tm = alignZero(u.dotProduct(v));
         double d = alignZero(Math.sqrt(u.lengthSquared() - (tm * tm) ));
 
+        // no intersections : the ray direction is above the sphere
         if(d >= _radius){
-            return null; //  no points
+            return null;
         }
 
         double th = alignZero(Math.sqrt( (_radius * _radius) - (d * d) ));
@@ -87,14 +89,12 @@ public class Sphere implements Geometry{
             return List.of(p1, p2);
         }
 
-        if(t1 > 0){
+        if(t1 > 0)
             return List.of(ray.getPoint(t1));
-        }
-        if(t2 > 0){
+
+        if(t2 > 0)
             return List.of(ray.getPoint(t2));
-        }
-        else {
-            return null; // 0 points
-        }
+
+        return null; // no intersections at all
     }
 }

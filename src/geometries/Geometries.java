@@ -32,7 +32,7 @@ public class Geometries implements Intersectable{
     /**
      * It takes an array of Intersectables and adds them to the list of Intersectables
      */
-    public void add( Intersectable...geometries){
+    public void add(Intersectable... geometries){
         Collections.addAll(_intersectables, geometries);
     }
 

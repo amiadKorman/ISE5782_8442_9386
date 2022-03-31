@@ -29,6 +29,6 @@ public class Triangle extends Polygon implements Geometry{
      * @return List of intersection {@link Point}s
      */
     public List<Point> findIntersections(Ray ray) {
-        return null;
+        return super.findIntersections(ray);
     }
 }

@@ -111,5 +111,4 @@ class TriangleTest {
         Ray ray6 = new Ray(new Point(0, 0, -1), new Vector(0, 4, 1));
         assertNull(triangle.findIntersections(ray6), "On edge's continuation");
     }
-
 }
