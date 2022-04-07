@@ -8,7 +8,8 @@ import java.util.Objects;
  * @author Amiad Korman & Omer Dayan
  */
 public class Point {
-    final protected Double3 _xyz;
+    public static final Point ZERO = new Point(0, 0, 0);
+    final protected Double3 xyz;
 
     /**
      * Constructor to initialize Point based object with Double3 value
@@ -16,7 +17,7 @@ public class Point {
      * @param xyz {@link Double3} value
      */
     public Point(Double3 xyz) {
-        _xyz = xyz;
+        this.xyz = xyz;
     }
 
     /**
@@ -27,7 +28,7 @@ public class Point {
      * @param z third number value
      */
     public Point(double x, double y, double z) {
-        _xyz = new Double3(x, y, z);
+        xyz = new Double3(x, y, z);
     }
 
     /**
@@ -37,10 +38,10 @@ public class Point {
      * @return The distance squared between the two points.
      */
     public double distanceSquared(Point point) {
-        Double3 temp = _xyz.subtract(point._xyz);
+        Double3 temp = xyz.subtract(point.xyz);
         temp = temp.product(temp);
 
-        return temp._d1 + temp._d2 + temp._d3;
+        return temp.d1 + temp.d2 + temp.d3;
     }
 
     /**
@@ -58,17 +59,17 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return _xyz.equals(point._xyz);
+        return xyz.equals(point.xyz);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_xyz);
+        return Objects.hash(xyz);
     }
 
     @Override
     public String toString() {
-        return "Point " + _xyz;
+        return "Point " + xyz;
     }
 
     /**
@@ -78,7 +79,7 @@ public class Point {
      * @return A new Point object.
      */
     public Point add(Vector vector) {
-        return new Point(_xyz.add(vector._xyz));
+        return new Point(xyz.add(vector.xyz));
     }
 
     /**
@@ -88,7 +89,7 @@ public class Point {
      * @return A new {@link Vector} object.
      */
     public Vector subtract(Point point) {
-        return new Vector(_xyz.subtract(point._xyz));
+        return new Vector(xyz.subtract(point.xyz));
     }
 
     /**
@@ -97,7 +98,7 @@ public class Point {
      * @return The value of the x coordinate.
      */
     public double getX(){
-        return _xyz._d1;
+        return xyz.d1;
     }
 
     /**
@@ -106,7 +107,7 @@ public class Point {
      * @return The value of the y coordinate.
      */
     public double getY(){
-        return _xyz._d2;
+        return xyz.d2;
     }
 
     /**
@@ -115,6 +116,6 @@ public class Point {
      * @return The value of the z coordinate.
      */
     public double getZ(){
-        return _xyz._d3;
+        return xyz.d3;
     }
 }

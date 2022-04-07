@@ -12,8 +12,8 @@ import static primitives.Util.*;
  * @author Amiad Korman & Omer Dayan
  */
 public class Plane implements Geometry {
-    final private Point _q0;
-    final private Vector _normal;
+    final private Point q0;
+    final private Vector normal;
 
     /**
      * Constructor to initialize Plane based object with its three points
@@ -23,14 +23,14 @@ public class Plane implements Geometry {
      * @param p3 third point
      */
     public Plane(Point p1, Point p2, Point p3) {
-        _q0 = p1;
+        q0 = p1;
 
         Vector U = p2.subtract(p1);
         Vector V = p3.subtract(p1);
 
         Vector N = U.crossProduct(V);
 
-        _normal = N.normalize();
+        normal = N.normalize();
     }
 
     /**
@@ -40,8 +40,8 @@ public class Plane implements Geometry {
      * @param normal vector to the plane
      */
     public Plane(Point q0, Vector normal) {
-        _q0 = q0;
-        _normal = normal.normalize();
+        this.q0 = q0;
+        this.normal = normal.normalize();
     }
 
 
@@ -53,8 +53,8 @@ public class Plane implements Geometry {
     @Override
     public String toString() {
         return "Plane{" +
-                "_q0=" + _q0 +
-                ", _normal=" + _normal +
+                "_q0=" + q0 +
+                ", _normal=" + normal +
                 '}';
     }
 
@@ -64,7 +64,7 @@ public class Plane implements Geometry {
      * @return point in the plane
      */
     public Point getQ0() {
-        return _q0;
+        return q0;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Plane implements Geometry {
      * @return the normal vector of the plane.
      */
     public Vector getNormal() {
-        return _normal;
+        return normal;
     }
 
     /**
@@ -97,7 +97,7 @@ public class Plane implements Geometry {
     public List<Point> findIntersections(Ray ray) {
         Point P0 = ray.getP0();
         Vector v = ray.getDir();
-        Vector n = _normal;
+        Vector n = normal;
 
         // ray is lying in the plane axis
         double nv= n.dotProduct(v);
@@ -107,7 +107,7 @@ public class Plane implements Geometry {
             return  null;
         }
 
-        Vector P0_Q0 = _q0.subtract(P0);
+        Vector P0_Q0 = q0.subtract(P0);
 
         //numerator
         double nQMinusP0  = alignZero(n.dotProduct(P0_Q0));

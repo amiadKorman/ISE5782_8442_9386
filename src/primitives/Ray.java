@@ -10,8 +10,8 @@ import static primitives.Util.isZero;
  * @author Amiad Korman & Omer Dayan
  */
 public class Ray {
-    private final Point _p0;
-    private final Vector _dir;
+    private final Point p0;
+    private final Vector dir;
 
     /**
      * Constructor to initialize Ray based object with its point value and vector value
@@ -20,8 +20,8 @@ public class Ray {
      * @param dir vector value
      */
     public Ray(Point p0, Vector dir) {
-        this._p0 = p0;
-        this._dir = dir.normalize();
+        this.p0 = p0;
+        this.dir = dir.normalize();
     }
 
     /**
@@ -30,7 +30,7 @@ public class Ray {
      * @return The xyz coordinates of the point p0.
      */
     public Point getP0() {
-        return _p0;
+        return p0;
     }
 
     /**
@@ -39,7 +39,7 @@ public class Ray {
      * @return A Vector object.
      */
     public Vector getDir() {
-        return _dir;
+        return dir;
     }
 
     @Override
@@ -47,17 +47,17 @@ public class Ray {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ray ray = (Ray) o;
-        return Objects.equals(_p0, ray._p0) && Objects.equals(_dir, ray._dir);
+        return Objects.equals(p0, ray.p0) && Objects.equals(dir, ray.dir);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_p0, _dir);
+        return Objects.hash(p0, dir);
     }
 
     @Override
     public String toString() {
-        return "Ray{" + _p0 + _dir + '}';
+        return "Ray{" + p0 + dir + '}';
     }
 
     /**
@@ -71,6 +71,6 @@ public class Ray {
         if(isZero(t)){
             throw new IllegalArgumentException("t equal 0 cause illegal Vector ZERO");
         }
-        return _p0.add(_dir.scale(t));
+        return p0.add(dir.scale(t));
     }
 }

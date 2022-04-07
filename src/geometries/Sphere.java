@@ -14,8 +14,8 @@ import static primitives.Util.alignZero;
  * @author Amiad Korman & Omer Dayan
  */
 public class Sphere implements Geometry{
-    final private Point _center;
-    final private double _radius;
+    final private Point center;
+    final private double radius;
 
     /**
      * Constructor to initialize Sphere based object with its center point and radius
@@ -24,8 +24,8 @@ public class Sphere implements Geometry{
      * @param radius
      */
     public Sphere(Point center, double radius) {
-        _center = center;
-        _radius = radius;
+        this.center = center;
+        this.radius = radius;
     }
 
     /**
@@ -36,8 +36,8 @@ public class Sphere implements Geometry{
     @Override
     public String toString() {
         return "Sphere{" +
-                "_center=" + _center +
-                ", _radius=" + _radius +
+                "_center=" + center +
+                ", _radius=" + radius +
                 '}';
     }
 
@@ -49,7 +49,7 @@ public class Sphere implements Geometry{
      */
     @Override
     public Vector getNormal(Point point) {
-        Vector v = point.subtract(_center);
+        Vector v = point.subtract(center);
         return v.normalize();
     }
 
@@ -64,21 +64,21 @@ public class Sphere implements Geometry{
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
 
-        if(p0.equals(_center)){
+        if(p0.equals(center)){
             throw new IllegalArgumentException("p of Ray is the center of the sphere");
         }
 
-        Vector u = _center.subtract(p0);
+        Vector u = center.subtract(p0);
 
         double tm = alignZero(u.dotProduct(v));
         double d = alignZero(Math.sqrt(u.lengthSquared() - (tm * tm) ));
 
         // no intersections : the ray direction is above the sphere
-        if(d >= _radius){
+        if(d >= radius){
             return null;
         }
 
-        double th = alignZero(Math.sqrt( (_radius * _radius) - (d * d) ));
+        double th = alignZero(Math.sqrt( (radius * radius) - (d * d) ));
 
         double t1 = alignZero(tm - th);
         double t2 = alignZero(tm + th);

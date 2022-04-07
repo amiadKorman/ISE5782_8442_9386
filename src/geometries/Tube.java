@@ -12,8 +12,8 @@ import java.util.List;
  * @author Amiad Korman & Omer Dayan
  */
 public class Tube implements Geometry{
-    final protected Ray _axisRay;
-    final protected double _radius;
+    final protected Ray axisRay;
+    final protected double radius;
 
     /**
      * Constructor to initialize Tube based object with its
@@ -22,8 +22,8 @@ public class Tube implements Geometry{
      * @param radius of the Tube
      */
     public Tube(Ray axisRay, double radius) {
-        _axisRay = axisRay;
-        _radius = radius;
+        this.axisRay = axisRay;
+        this.radius = radius;
     }
 
     /**
@@ -32,7 +32,7 @@ public class Tube implements Geometry{
      * @return A ray that is perpendicular to the axis of the cylinder.
      */
     public Ray getAxisRay() {
-        return _axisRay;
+        return axisRay;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Tube implements Geometry{
      * @return The radius of the Tube.
      */
     public double getRadius() {
-        return _radius;
+        return radius;
     }
 
     /**
@@ -52,8 +52,8 @@ public class Tube implements Geometry{
     @Override
     public String toString() {
         return "Tube{" +
-                "_axisRay=" + _axisRay +
-                ", _radius=" + _radius +
+                "_axisRay=" + axisRay +
+                ", _radius=" + radius +
                 '}';
     }
 
@@ -67,8 +67,8 @@ public class Tube implements Geometry{
     // Returning a vector that is perpendicular to the surface of the tube.
     public Vector getNormal(Point point) {
 
-        Vector tubeCenterVector = _axisRay.getDir();
-        Point p0 = _axisRay.getP0();
+        Vector tubeCenterVector = axisRay.getDir();
+        Point p0 = axisRay.getP0();
 
         double projection = tubeCenterVector.dotProduct(point.subtract(p0));
         if (projection == 0) {

@@ -15,12 +15,12 @@ public class Polygon implements Geometry {
 	/**
 	 * List of polygon's vertices
 	 */
-	protected final List<Point> _vertices;
+	protected final List<Point> vertices;
 	/**
 	 * Associated plane in which the polygon lays
 	 */
-	protected final Plane _plane;
-	private int _size;
+	protected final Plane plane;
+	private int size;
 
 	/**
 	 * Polygon constructor based on vertices list. The list must be ordered by edge
@@ -46,15 +46,15 @@ public class Polygon implements Geometry {
 	public Polygon(Point... vertices) {
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
-		_vertices = List.of(vertices);
+		this.vertices = List.of(vertices);
 		// Generate the plane according to the first three vertices and associate the
 		// polygon with this plane.
 		// The plane holds the invariant normal (orthogonal unit) vector to the polygon
-		_plane = new Plane(vertices[0], vertices[1], vertices[2]);
+		plane = new Plane(vertices[0], vertices[1], vertices[2]);
 		if (vertices.length == 3)
 			return; // no need for more tests for a Triangle
 
-		Vector n = _plane.getNormal();
+		Vector n = plane.getNormal();
 
 		// Subtracting any subsequent points will throw an IllegalArgumentException
 		// because of Zero Vector if they are in the same point
@@ -81,23 +81,23 @@ public class Polygon implements Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
-		_size = vertices.length;
+		size = vertices.length;
 	}
 
 	@Override
 	// Overriding the `toString()` method of the `Object` class.
 	public String toString() {
 		return "Polygon{" +
-				"vertices=" + _vertices +
-				", plane=" + _plane +
-				", size=" + _size +
+				"vertices=" + vertices +
+				", plane=" + plane +
+				", size=" + size +
 				'}';
 	}
 
 	@Override
 	// Returning the normal vector of the plane associated with the polygon.
 	public Vector getNormal(Point point) {
-		return _plane.getNormal(point);
+		return plane.getNormal(point);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class Polygon implements Geometry {
 	@Override
 	public List<Point> findIntersections(Ray ray) {
 
-		List<Point> result = _plane.findIntersections(ray);
+		List<Point> result = plane.findIntersections(ray);
 
 		if (result == null) {
 			return null;
@@ -118,8 +118,8 @@ public class Polygon implements Geometry {
 		Point P0 = ray.getP0();
 		Vector v = ray.getDir();
 
-		Point P1 = _vertices.get(1);
-		Point P2 = _vertices.get(0);
+		Point P1 = vertices.get(1);
+		Point P2 = vertices.get(0);
 
 		Vector v1 = P1.subtract(P0);
 		Vector v2 = P2.subtract(P0);
@@ -133,9 +133,9 @@ public class Polygon implements Geometry {
 		boolean positive = sign > 0;
 
 		//iterate through all vertices of the polygon
-		for (int i = _vertices.size() - 1; i > 0; --i) {
+		for (int i = vertices.size() - 1; i > 0; --i) {
 			v1 = v2;
-			v2 = _vertices.get(i).subtract(P0);
+			v2 = vertices.get(i).subtract(P0);
 
 			sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
 			if (isZero(sign)) {
