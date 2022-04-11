@@ -61,14 +61,15 @@ public class Sphere implements Geometry{
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        Point p0 = ray.getP0();
+        Point P0 = ray.getP0();
         Vector v = ray.getDir();
 
-        if(p0.equals(center)){
-            throw new IllegalArgumentException("p of Ray is the center of the sphere");
+        if(P0.equals(center)){
+            return List.of(center.add(v.scale(radius)));
+            //throw new IllegalArgumentException("p of Ray is the center of the sphere");
         }
 
-        Vector u = center.subtract(p0);
+        Vector u = center.subtract(P0);
 
         double tm = alignZero(u.dotProduct(v));
         double d = alignZero(Math.sqrt(u.lengthSquared() - (tm * tm) ));

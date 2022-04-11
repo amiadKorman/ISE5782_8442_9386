@@ -99,7 +99,12 @@ public class Plane implements Geometry {
         Vector v = ray.getDir();
         Vector n = normal;
 
-        // ray is lying in the plane axis
+        // ray begins at q0 of the plane
+        if(q0.equals(P0)){
+            return null;
+        }
+
+        // ray is laying in the plane axis
         double nv= n.dotProduct(v);
 
         //ray direction cannot be parallel to plane oriented
@@ -112,7 +117,7 @@ public class Plane implements Geometry {
         //numerator
         double nQMinusP0  = alignZero(n.dotProduct(P0_Q0));
 
-        // t should  > 0
+        // t should be > 0
         if (isZero(nQMinusP0 )){
             return null;
         }
