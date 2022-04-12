@@ -62,14 +62,14 @@ public class Ray {
 
     /**
      *
-     * get Point at specific distance in the ray direction
+     * Creating a {@link Point} at a specific distance in the ray direction
      *
      * @param t distance for reaching new Point
      * @return new {@link Point}
      */
-    public Point getPoint(double t) {
+    public Point  getPoint(double t) {
         if(isZero(t)){
-            throw new IllegalArgumentException("t equal 0 cause illegal Vector ZERO");
+            throw new IllegalArgumentException("t should not be ZERO");
         }
         return p0.add(dir.scale(t));
     }

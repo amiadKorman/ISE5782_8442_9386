@@ -26,6 +26,9 @@ class TriangleTest {
                 "ERROR: The calculation of normal to the triangle is not calculated correctly");
     }
 
+    /**
+     *tests for {@link geometries.Triangle#findIntersections(primitives.Ray)}.
+     */
     @Test
     void allFindIntersectionality(){
         testFindIntersections1();
@@ -36,10 +39,8 @@ class TriangleTest {
         testFindIntersections6();
     }
 
-    /**
-     *tests for {@link geometries.Triangle#findIntersections(primitives.Ray)}.
-     */
     // ============ Equivalence Partitions Tests ==============
+
     //TC01: Inside polygon/triangle(1 Point)
     @Test
     void testFindIntersections1() {
@@ -77,6 +78,7 @@ class TriangleTest {
     }
 
     // =============== Boundary Values Tests ==================
+
     //****Three cases (the ray begins "before" the plane)**
 
     //TC11: On edge(0 Point)

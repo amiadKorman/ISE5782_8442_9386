@@ -50,11 +50,11 @@ public class Polygon implements Geometry {
 		// Generate the plane according to the first three vertices and associate the
 		// polygon with this plane.
 		// The plane holds the invariant normal (orthogonal unit) vector to the polygon
-		plane = new Plane(vertices[0], vertices[1], vertices[2]);
+		this.plane = new Plane(vertices[0], vertices[1], vertices[2]);
 		if (vertices.length == 3)
 			return; // no need for more tests for a Triangle
 
-		Vector n = plane.getNormal();
+		Vector n = this.plane.getNormal();
 
 		// Subtracting any subsequent points will throw an IllegalArgumentException
 		// because of Zero Vector if they are in the same point
@@ -81,23 +81,23 @@ public class Polygon implements Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
-		size = vertices.length;
+		this.size = vertices.length;
 	}
 
 	@Override
 	// Overriding the `toString()` method of the `Object` class.
 	public String toString() {
 		return "Polygon{" +
-				"vertices=" + vertices +
-				", plane=" + plane +
-				", size=" + size +
+				"vertices=" + this.vertices +
+				", plane=" + this.plane +
+				", size=" + this.size +
 				'}';
 	}
 
 	@Override
 	// Returning the normal vector of the plane associated with the polygon.
 	public Vector getNormal(Point point) {
-		return plane.getNormal(point);
+		return this.plane.getNormal(point);
 	}
 
 	/**
@@ -109,8 +109,11 @@ public class Polygon implements Geometry {
 	@Override
 	public List<Point> findIntersections(Ray ray) {
 
+		// Gets all intersections with the plane
 		List<Point> result = plane.findIntersections(ray);
 
+		// if there is no intersections with the whole plane,
+		// then is no intersections with the polygon
 		if (result == null) {
 			return null;
 		}
@@ -118,8 +121,8 @@ public class Polygon implements Geometry {
 		Point P0 = ray.getP0();
 		Vector v = ray.getDir();
 
-		Point P1 = vertices.get(1);
-		Point P2 = vertices.get(0);
+		Point P1 = this.vertices.get(1);
+		Point P2 = this.vertices.get(0);
 
 		Vector v1 = P1.subtract(P0);
 		Vector v2 = P2.subtract(P0);
@@ -133,9 +136,9 @@ public class Polygon implements Geometry {
 		boolean positive = sign > 0;
 
 		//iterate through all vertices of the polygon
-		for (int i = vertices.size() - 1; i > 0; --i) {
+		for (int i = this.vertices.size() - 1; i > 0; --i) {
 			v1 = v2;
-			v2 = vertices.get(i).subtract(P0);
+			v2 = this.vertices.get(i).subtract(P0);
 
 			sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
 			if (isZero(sign)) {

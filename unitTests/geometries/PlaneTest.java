@@ -50,12 +50,15 @@ class PlaneTest {
 
         //check the positive and negative direction of the normal//
         assertTrue(plane.getNormal().equals(new Vector(sqrt3, sqrt3, sqrt3)) ||
-                plane.getNormal().scale(-1).equals(new Vector(sqrt3, sqrt3, sqrt3)),
+                        plane.getNormal().scale(-1).equals(new Vector(sqrt3, sqrt3, sqrt3)),
                 "ERROR: The calculation of normal to the plane is not calculated correctly");
     }
 
+    /**
+     * Test methods for {@link geometries.Plane#findIntersections(primitives.Ray)}
+     */
     @Test
-    void allFindIntersectionality(){
+    void allFindIntersectionality() {
         testFindIntersections1();
         testFindIntersections2();
         testFindIntersections3();
@@ -68,79 +71,121 @@ class PlaneTest {
         testFindIntersections10();
     }
 
+    // ============ Equivalence Partitions Tests ==============
+
+    // TC01: Ray into plane
     @Test
     void testFindIntersections1() {
-        // ============ Equivalence Partitions Tests ==============
-        // TC01: Ray into plane
         assertEquals(
-                List.of(new Point(1, 0, 0)),
-                pl.findIntersections(new Ray(new Point(0.51, 0, 0), new Vector(1, 0, 0))),
+                List.of(
+                        new Point(1, 0, 0)),
+                pl.findIntersections(
+                        new Ray(
+                                new Point(0.51, 0, 0),
+                                new Vector(1, 0, 0))),
                 "Bad plane intersection");
     }
 
+    // TC02: Ray out of plane
     @Test
     void testFindIntersections2() {
-        // TC02: Ray out of plane
-        assertNull(pl.findIntersections(new Ray(new Point(2, 0, 0), new Vector(1, 0, 0))),
+        assertNull(
+                pl.findIntersections(
+                        new Ray(
+                                new Point(2, 0, 0),
+                                new Vector(1, 0, 0))),
                 "Must not be plane intersection");
     }
 
+    // =============== Boundary Values Tests ==================
+
+    // TC11: Ray parallel to plane
     @Test
     void testFindIntersections3() {
-        // =============== Boundary Values Tests ==================
-
-        // TC11: Ray parallel to plane
-        assertNull(pl.findIntersections(new Ray(new Point(1, 1, 1), new Vector(0, 1, -1))),
+        assertNull(
+                pl.findIntersections(
+                        new Ray(
+                                new Point(1, 1, 1),
+                                new Vector(0, 1, -1))),
                 "Must not be plane intersection");
     }
 
+    // TC12: Ray in plane
     @Test
     void testFindIntersections4() {
-        // TC12: Ray in plane
-        assertNull(pl.findIntersections(new Ray(new Point(0, 0.5, .5), new Vector(0, 1, -1))),
+        assertNull(
+                pl.findIntersections(
+                        new Ray(
+                                new Point(0, 0.5, .5),
+                                new Vector(0, 1, -1))),
                 "Must not be plane intersection");
     }
 
+    // TC13: Orthogonal ray into plane
     @Test
     void testFindIntersections5() {
-        // TC13: Orthogonal ray into plane
-        assertEquals(List.of(new Point(1d / 3, 1d / 3, 1d / 3)),
-                pl.findIntersections(new Ray(new Point(1, 1, 1), new Vector(-1, -1, -1))),
+        assertEquals(
+                List.of(
+                        new Point(1d / 3, 1d / 3, 1d / 3)),
+                pl.findIntersections(
+                        new Ray(
+                                new Point(1, 1, 1),
+                                new Vector(-1, -1, -1))),
                 "Bad plane intersection");
     }
 
+    // TC14: Orthogonal ray out of plane
     @Test
     void testFindIntersections6() {
-        // TC14: Orthogonal ray out of plane
-        assertNull(pl.findIntersections(new Ray(new Point(1, 1, 1), new Vector(1, 1, 1))),
+        assertNull(
+                pl.findIntersections(
+                        new Ray(
+                                new Point(1, 1, 1),
+                                new Vector(1, 1, 1))),
                 "Must not be plane intersection");
     }
 
+    // TC15: Orthogonal ray out of plane
     @Test
     void testFindIntersections7() {
-        // TC15: Orthogonal ray out of plane
-        assertNull(pl.findIntersections(new Ray(new Point(1, 1, 1), new Vector(1, 1, 1))),
+        assertNull(
+                pl.findIntersections(
+                        new Ray(
+                                new Point(1, 1, 1),
+                                new Vector(1, 1, 1))),
                 "Must not be plane intersection");
     }
 
+    // TC16: Orthogonal ray from plane
     @Test
     void testFindIntersections8() {
-        // TC16: Orthogonal ray from plane
-        assertNull(pl.findIntersections(new Ray(new Point(0, 0.5, 0.5), new Vector(1, 1, 1))),
+        assertNull(
+                pl.findIntersections(
+                        new Ray(
+                                new Point(0, 0.5, 0.5),
+                                new Vector(1, 1, 1))),
                 "Must not be plane intersection");
     }
 
+    // TC17: Ray from plane
     @Test
     void testFindIntersections9() {
-        // TC17: Ray from plane
-        assertNull(pl.findIntersections(new Ray(new Point(0, 0.5, 0.5), new Vector(1, 1, 0))),
+        assertNull(
+                pl.findIntersections(
+                        new Ray(
+                                new Point(0, 0.5, 0.5),
+                                new Vector(1, 1, 0))),
                 "Must not be plane intersection");
     }
 
+    // TC18: Ray from plane's Q point
     @Test
     void testFindIntersections10() {
-        // TC18: Ray from plane's Q point
-        assertNull(pl.findIntersections(new Ray(new Point(0, 0, 1), new Vector(1, 1, 0))),
+        assertNull(
+                pl.findIntersections(
+                        new Ray(
+                                new Point(0, 0, 1),
+                                new Vector(1, 1, 0))),
                 "Must not be plane intersection");
     }
 

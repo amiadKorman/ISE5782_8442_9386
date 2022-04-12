@@ -26,6 +26,9 @@ class SphereTest {
                 "ERROR: The calculation of normal to the Sphere is not calculated correctly");
     }
 
+    /**
+     * Test methods for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
+     */
     @Test
     void allFindIntersectionality(){
         testFindIntersections1();
@@ -46,14 +49,11 @@ class SphereTest {
         testFindIntersections16();
     }
 
-    /**
-     * Test methods for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
-     */
+    // ============ Equivalence Partitions Tests ==============
+
+    // TC01: Ray's line is outside the sphere (0 points)
     @Test
     public void testFindIntersections1() {
-        // ============ Equivalence Partitions Tests ==============
-
-        // TC01: Ray's line is outside the sphere (0 points)
         assertNull(
                 sphere.findIntersections(
                         new Ray(
@@ -62,9 +62,9 @@ class SphereTest {
                 "Ray's line out of sphere");
     }
 
+    // TC02: Ray starts before and crosses the sphere (2 points)
     @Test
     public void testFindIntersections2(){
-        // TC02: Ray starts before and crosses the sphere (2 points)
         List<Point> result = sphere.findIntersections(new Ray(new Point(-1, 0, 0),
                 new Vector(3, 1, 0)));
         assertEquals(2, result.size(),
@@ -75,9 +75,9 @@ class SphereTest {
                 "Ray crosses sphere");
     }
 
+    // TC03: Ray starts inside the sphere (1 point)
     @Test
     void testFindIntersections3(){
-        // TC03: Ray starts inside the sphere (1 point)
         assertEquals(
                 List.of(p2),
                 sphere.findIntersections(
@@ -87,10 +87,9 @@ class SphereTest {
                 "Ray from inside sphere");
     }
 
-
+    // TC04: Ray starts after the sphere (0 points)
     @Test
     void testFindIntersections4(){
-        // TC04: Ray starts after the sphere (0 points)
         assertNull(
                 sphere.findIntersections(
                         new Ray(
@@ -103,9 +102,9 @@ class SphereTest {
 
     // **** Group: Ray's line crosses the sphere (but not the center)
 
+    // TC11: Ray starts at sphere and goes inside (1 points)
     @Test
     void testFindIntersections5(){
-        // TC11: Ray starts at sphere and goes inside (1 points)
         assertEquals(
                 List.of(
                         new Point(2, 0, 0)),
@@ -116,10 +115,9 @@ class SphereTest {
                 "Ray from sphere inside");
     }
 
-
+    // TC12: Ray starts at sphere and goes outside (0 points)
     @Test
     void testFindIntersections6(){
-        // TC12: Ray starts at sphere and goes outside (0 points)
         assertNull(
                 sphere.findIntersections(
                         new Ray(
@@ -129,9 +127,10 @@ class SphereTest {
     }
 
     // **** Group: Ray's line goes through the center
+
+    // TC13: Ray starts before the sphere (2 points)
     @Test
     void testFindIntersections7(){
-        // TC13: Ray starts before the sphere (2 points)
         List<Point> result = sphere.findIntersections(
                 new Ray(
                         new Point(1, -2, 0),
@@ -150,9 +149,9 @@ class SphereTest {
                 "Line through O, ray crosses sphere");
     }
 
+    // TC14: Ray starts at sphere and goes inside (1 points)
     @Test
     void testFindIntersections8() {
-        // TC14: Ray starts at sphere and goes inside (1 points)
         assertEquals(
                 List.of(
                         new Point(1, 1, 0)),
@@ -163,9 +162,9 @@ class SphereTest {
                 "Line through O, ray from and crosses sphere");
     }
 
+    // TC15: Ray starts inside (1 points)
     @Test
     void testFindIntersections9() {
-        // TC15: Ray starts inside (1 points)
         assertEquals(
                 List.of(
                         new Point(1, 1, 0)),
@@ -176,9 +175,9 @@ class SphereTest {
                 "Line through O, ray from inside sphere");
     }
 
+    // TC16: Ray starts at the center (1 points)
     @Test
     void testFindIntersections10(){
-        // TC16: Ray starts at the center (1 points)
         assertEquals(
                 List.of(
                         new Point(1, 1, 0)),
@@ -189,9 +188,9 @@ class SphereTest {
                 "Line through O, ray from O");
     }
 
+    // TC17: Ray starts at sphere and goes outside (0 points)
     @Test
     void testFindIntersections11(){
-        // TC17: Ray starts at sphere and goes outside (0 points)
         assertNull(
                 sphere.findIntersections(
                         new Ray(
@@ -200,9 +199,9 @@ class SphereTest {
                 "Line through O, ray from sphere outside");
     }
 
+    // TC18: Ray starts after sphere (0 points)
     @Test
     void testFindIntersections12(){
-        // TC18: Ray starts after sphere (0 points)
         assertNull(
                 sphere.findIntersections(
                         new Ray(
@@ -213,9 +212,10 @@ class SphereTest {
     }
 
     // **** Group: Ray's line is tangent to the sphere (all tests 0 points)
+
+    // TC19: Ray starts before the tangent point
     @Test
     void testFindIntersections13(){
-        // TC19: Ray starts before the tangent point
         assertNull(
                 sphere.findIntersections(
                         new Ray(
@@ -224,9 +224,9 @@ class SphereTest {
                 "Tangent line, ray before sphere");
     }
 
+    // TC20: Ray starts at the tangent point
     @Test
     void testFindIntersections14(){
-        // TC20: Ray starts at the tangent point
         assertNull(
                 sphere.findIntersections(
                         new Ray(
@@ -235,10 +235,9 @@ class SphereTest {
                 "Tangent line, ray at sphere");
     }
 
-
+    // TC21: Ray starts after the tangent point
     @Test
     void testFindIntersections15(){
-        // TC21: Ray starts after the tangent point
         assertNull(
                 sphere.findIntersections(
                         new Ray(
@@ -248,9 +247,10 @@ class SphereTest {
     }
 
     // **** Group: Special cases
+
+    // TC22: Ray's line is outside, ray is orthogonal to ray start to sphere's center line
     @Test
     void testFindIntersections16(){
-        // TC22: Ray's line is outside, ray is orthogonal to ray start to sphere's center line
         assertNull(
                 sphere.findIntersections(
                         new Ray(
