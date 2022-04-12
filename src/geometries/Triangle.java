@@ -14,7 +14,7 @@ import static primitives.Util.alignZero;
 public class Triangle extends Polygon implements Geometry {
 
     /**
-     * Constructor to initialize Triangle based object with its three points
+     * Constructor to initialize Triangle based three points
      *
      * @param p1 first point
      * @param p2 second point

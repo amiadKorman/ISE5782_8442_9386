@@ -64,12 +64,10 @@ public class Vector extends Point {
 
         double u3 = xyz.d3;
 
-
         double v1 = v.xyz.d1;
         double v2 = v.xyz.d2;
 
         double v3 = v.xyz.d3;
-
 
         return (u1 * v1 + u2 * v2 + u3 * v3);
     }

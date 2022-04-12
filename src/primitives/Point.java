@@ -3,7 +3,7 @@ package primitives;
 import java.util.Objects;
 
 /**
- * class representing  a Point in 3D space
+ * class representing a Point in 3D space
  *
  * @author Amiad Korman & Omer Dayan
  */

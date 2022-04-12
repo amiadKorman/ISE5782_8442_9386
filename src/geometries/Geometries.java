@@ -28,7 +28,7 @@ public class Geometries implements Intersectable {
     }
 
     /**
-     * Geometries constructor
+     * Geometries constructor based on intersectables list
      *
      * @param intersectables
      */

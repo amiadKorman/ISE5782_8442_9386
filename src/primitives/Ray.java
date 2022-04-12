@@ -67,7 +67,7 @@ public class Ray {
      * @param t distance for reaching new Point
      * @return new {@link Point}
      */
-    public Point  getPoint(double t) {
+    public Point getPoint(double t) {
         if(isZero(t)){
             throw new IllegalArgumentException("t should not be ZERO");
         }

@@ -94,8 +94,13 @@ public class Polygon implements Geometry {
 				'}';
 	}
 
+	/**
+	 * implementation of getNormal from Geometry
+	 *
+	 * @param point
+	 * @return normal vector to the sphere in point
+	 */
 	@Override
-	// Returning the normal vector of the plane associated with the polygon.
 	public Vector getNormal(Point point) {
 		return this.plane.getNormal(point);
 	}

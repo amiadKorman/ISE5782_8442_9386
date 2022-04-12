@@ -4,17 +4,34 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-//Creating a class to represent a cylinder
+/**
+ * class representing a Cylinder
+ *
+ * @author Amiad Korman & Omer Dayan
+ */
 public class Cylinder extends Tube implements Geometry {
 
     private double height;
 
     // Creating a constructor for the class Cylinder.
+
+    /**
+     * Cylinder constructor based on parameters
+     *
+     * @param axisRay
+     * @param radius
+     * @param height
+     */
     public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
         this.height = height;
     }
 
+    /**
+     * Getter for the value of the height field
+     *
+     * @return The height of the rectangle.
+     */
     public double getHeight() {
         return height;
     }
@@ -28,6 +45,12 @@ public class Cylinder extends Tube implements Geometry {
                 '}';
     }
 
+    /**
+     * implementation of getNormal from Geometry
+     *
+     * @param point
+     * @return normal vector to the sphere in point
+     */
     public Vector getNormal(Point point) {
 
         // define the center of cylinder's sides
