@@ -4,6 +4,10 @@ import primitives.Color;
 import primitives.Ray;
 import scene.Scene;
 
+/**
+ *
+ * @author Amiad Korman & Omer Dayan
+ */
 public abstract class RayTracerBase {
     protected Scene scene;
 

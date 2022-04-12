@@ -8,15 +8,22 @@ import primitives.Vector;
 
 import static primitives.Util.isZero;
 
+/**
+ * This class represented a camera
+ *
+ * @author Amiad Korman & Omer Dayan
+ */
 public class Camera {
 
     private Vector vRight;
     private Vector vTo;
     private Vector vUp;
     private Point p0;
+
     private double distance;
     private int width;
     private int height;
+
     private ImageWriter imageWriter;
     private RayTracerBasic rayTracer;
 
@@ -35,7 +42,34 @@ public class Camera {
         this.p0 = p0;
         this.vTo = vTo.normalize();
         this.vUp = vUp.normalize();
-        this.vRight = this.vTo.crossProduct(this.vUp).normalize();
+        this.vRight = this.vTo.crossProduct(this.vUp);
+    }
+
+    /**
+     * Getter for the distance field of Camera
+     *
+     * @return The distance between the camera and the viewPlane.
+     */
+    public double getDistance() {
+        return distance;
+    }
+
+    /**
+     * Getter for the width field of Camera.
+     *
+     * @return The width of the camera.
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * Getter for the height field of Camera.
+     *
+     * @return The height of the camera.
+     */
+    public int getHeight() {
+        return height;
     }
 
     /**
@@ -86,11 +120,13 @@ public class Camera {
         double yI = -(i -((nY - 1)/2d)) * rY;
         double xJ = (j -((nX - 1)/2d)) * rX;;
 
-        if (xJ != 0 )
+        // move to middle of pixel i,j
+        if (!isZero(xJ))
             Pij = Pij.add (this.vRight.scale(xJ));
-        if (yI != 0 )
+        if (!isZero(yI))
             Pij = Pij.add(this.vUp.scale(yI));
 
+        // return ray from camera to viewPlane coordinate (i, j)
         return new Ray(this.p0, Pij.subtract(this.p0));
     }
 
