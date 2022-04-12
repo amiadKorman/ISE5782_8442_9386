@@ -31,7 +31,6 @@ public class Triangle extends Polygon implements Geometry {
      * @return List of intersection {@link Point}s
      */
     public List<Point> findIntersections(Ray ray) {
-        // return super.findIntersections(ray);
         // Gets all intersections with the plane
         List<Point> result = plane.findIntersections(ray);
 

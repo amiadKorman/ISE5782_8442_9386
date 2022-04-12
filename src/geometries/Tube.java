@@ -84,6 +84,12 @@ public class Tube implements Geometry{
         return normalVector;
     }
 
+    /**
+     * implementation of findIntersections from Geometry
+     *
+     * @param ray {@link Ray}  pointing toward the object
+     * @return List of intersection {@link Point}s
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         return null;
