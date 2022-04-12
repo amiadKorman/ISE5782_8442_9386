@@ -4,6 +4,8 @@ import primitives.*;
 
 /**
  * Ambient Light for all objects in 3D space
+ *
+ * @author Amiad Korman & Omer Dayan
  */
 public class AmbientLight {
     private final Color intensity;  // intensity of ambient light
