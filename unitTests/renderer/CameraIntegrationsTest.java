@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Dan Zilberstein
- * @editor Amiad Korman & Omer Dayan
  */
 public class CameraIntegrationsTest {
 
