@@ -9,11 +9,21 @@ import scene.Scene;
  * @author Amiad Korman & Omer Dayan
  */
 public abstract class RayTracerBase {
-    protected Scene scene;
+    protected final Scene scene;
 
+    /**
+     * Constructor for RayTracerBase
+     * @param scene
+     */
     protected RayTracerBase(Scene scene){
         this.scene = scene;
     }
 
+    /**
+     * Given a ray, trace it through the scene and return the color of the pixel that it hits.
+     *
+     * @param ray The ray to trace.
+     * @return A color object.
+     */
     abstract Color traceRay(Ray ray);
 }

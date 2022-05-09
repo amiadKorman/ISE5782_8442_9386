@@ -68,6 +68,7 @@ public class ImageWriter {
 	 * Function writeToImage produces unoptimized png file of the image according to
 	 * pixel color matrix in the directory of the project
 	 */
+
 	public void writeToImage() {
 		try {
 			File file = new File(FOLDER_PATH + '/' + imageName + ".png");

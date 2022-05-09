@@ -14,7 +14,7 @@ public class AmbientLight {
      * default constructor
      */
     public AmbientLight() {
-        intensity = Color.BLACK;
+        this.intensity = Color.BLACK;
     }
 
     /**
@@ -23,15 +23,15 @@ public class AmbientLight {
      * @param Ka Light factor
      */
     public AmbientLight(Color Ia, Double3 Ka) {
-        intensity = Ia.scale(Ka);
+        this.intensity = Ia.scale(Ka);
     }
 
     /**
-     * getter for intensity
+     * getter for intensity field
      *
      * @return The intensity of the light.
      */
     public Color getIntensity() {
-        return intensity;
+        return this.intensity;
     }
 }

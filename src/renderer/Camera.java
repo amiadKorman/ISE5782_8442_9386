@@ -6,6 +6,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.MissingResourceException;
+
 import static primitives.Util.isZero;
 
 /**
@@ -25,7 +27,7 @@ public class Camera {
     private int height;
 
     private ImageWriter imageWriter;
-    private RayTracerBasic rayTracer;
+    private RayTracerBase rayTracer;
 
     /**
      * This is the constructor of the camera class. It takes 3 vectors as parameters and checks if they are orthogonal.
@@ -51,7 +53,7 @@ public class Camera {
      * @return The distance between the camera and the viewPlane.
      */
     public double getDistance() {
-        return distance;
+        return this.distance;
     }
 
     /**
@@ -60,7 +62,7 @@ public class Camera {
      * @return The width of the camera.
      */
     public int getWidth() {
-        return width;
+        return this.width;
     }
 
     /**
@@ -69,7 +71,7 @@ public class Camera {
      * @return The height of the camera.
      */
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     /**
@@ -93,6 +95,28 @@ public class Camera {
     public Camera setVPSize(int width, int height) {
         this.width = width;
         this.height = height;
+        return this;
+    }
+
+    /**
+     * This function sets the image writer of the camera and returns the camera.
+     *
+     * @param imageWriter The ImageWriter object that will be used to write the image to a file.
+     * @return The camera itself.
+     */
+    public Camera setImageWriter(ImageWriter imageWriter) {
+        this.imageWriter = imageWriter;
+        return this;
+    }
+
+    /**
+     * This function sets the ray tracer for this camera.
+     *
+     * @param rayTracer The ray tracer to use.
+     * @return The camera object itself.
+     */
+    public Camera setRayTracer(RayTracerBase rayTracer) {
+        this.rayTracer = rayTracer;
         return this;
     }
 
@@ -130,28 +154,68 @@ public class Camera {
         return new Ray(this.p0, Pij.subtract(this.p0));
     }
 
-    public Camera setImageWriter(ImageWriter imageWriter) {
-        this.imageWriter = imageWriter;
-        return this;
+    /**
+     * This function constructs a ray from the camera through the pixel at (nX, nY) and then traces that ray through the
+     * scene to determine the color of the pixel
+     *
+     * @param nX the x coordinate of the pixel on the screen
+     * @param nY the y-coordinate of the pixel in the image
+     * @param col the column of the pixel
+     * @param row the row of the pixel in the image
+     * @return The color of the pixel.
+     */
+    private Color castRay(int nX, int nY, int col, int row) {
+        Ray ray = constructRay(nX, nY, col, row);
+        Color pixelColor = this.rayTracer.traceRay(ray);
+        return pixelColor;
     }
 
-    public Camera setRayTracer(RayTracerBasic rayTracer) {
-        this.rayTracer = rayTracer;
-        return this;
-    }
-
+    /**
+     * > The function iterates over all the pixels in the image and casts a ray through each pixel
+     */
     public void renderImage() {
-        //TO DO
+        try{
+            if(this.imageWriter == null)
+                throw new MissingResourceException("Image Writer is missing", ImageWriter.class.getName(),"");
+            if(this.rayTracer == null)
+                throw new MissingResourceException("Ray Tracer is missing", RayTracerBase.class.getName(),"");
+            // Rendering the image
+            int nX = this.imageWriter.getNx();
+            int nY = this.imageWriter.getNy();
+            for (int i = 0; i < nY; i++) {
+                for (int j = 0; j < nX; j++) {
+                    Color pixelColor = castRay(nX, nY, j, i);
+                    this.imageWriter.writePixel(j, i, pixelColor);
+                }
+            }
+        } catch(MissingResourceException e) {
+            throw new UnsupportedOperationException("Not implemented yet!" + e.getClassName());
+        }
     }
 
+    /**
+     * If the imageWriter is not null, write to the image.
+     */
     public void writeToImage() {
+        if(this.imageWriter == null){
+            throw new MissingResourceException("Image Writer is missing", "Camera", "in writeToImage");
+        }
         this.imageWriter.writeToImage();;
     }
 
+    /**
+     * This function prints a grid on the image, with the given interval and color.
+     *
+     * @param interval the interval between the lines
+     * @param color the color of the grid
+     */
     public void printGrid(int interval, Color color) {
+        if(this.imageWriter == null){
+            throw new MissingResourceException("Image Writer is missing", "Camera","in printGrid");
+        }
         for (int i = 0; i < this.imageWriter.getNx(); i++) {
             for (int j = 0; j < this.imageWriter.getNy(); j++) {
-                if (i % 50 == 0 || j % 50 == 0)
+                if (i % interval == 0 || j % interval == 0)
                     this.imageWriter.writePixel(i, j, color);
             }
         }
