@@ -189,7 +189,7 @@ public class Camera {
                 }
             }
         } catch(MissingResourceException e) {
-            throw new UnsupportedOperationException("Not implemented yet!" + e.getClassName());
+            throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
     }
 
@@ -198,7 +198,7 @@ public class Camera {
      */
     public void writeToImage() {
         if(this.imageWriter == null){
-            throw new MissingResourceException("Image Writer is missing", "Camera", "in writeToImage");
+            throw new MissingResourceException("Image Writer is missing", ImageWriter.class.getName(),"");
         }
         this.imageWriter.writeToImage();;
     }
@@ -211,7 +211,7 @@ public class Camera {
      */
     public void printGrid(int interval, Color color) {
         if(this.imageWriter == null){
-            throw new MissingResourceException("Image Writer is missing", "Camera","in printGrid");
+            throw new MissingResourceException("Image Writer is missing", ImageWriter.class.getName(),"");
         }
         for (int i = 0; i < this.imageWriter.getNx(); i++) {
             for (int j = 0; j < this.imageWriter.getNy(); j++) {
