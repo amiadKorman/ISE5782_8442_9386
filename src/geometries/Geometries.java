@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * A collection of intersectables
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 
     // A private list of intersectable.
     private List<Intersectable> intersectables;
@@ -47,25 +47,25 @@ public class Geometries implements Intersectable {
     }
 
     /**
-     * implementation of findIntersections from Geometry
+     * implementation of findGeoIntersectionsHelper from Intersectable
      *
      * @param ray {@link Ray}  pointing toward the object
      * @return List of intersection {@link Point}s
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> result = null;
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> intersections = null;
         for (var item : this.intersectables) {
             //get intersections points of a particular item from intersectables
-            List<Point> itemList = item.findIntersections(ray);
-            if (itemList != null) {
+            var points = item.findGeoIntersections(ray);
+            if (points != null) {
                 //first time initialize result to new LinkedList
-                if (result == null)
-                    result = new LinkedList<>();
+                if (intersections == null)
+                    intersections = new LinkedList<>();
                 //add all item points to the resulting list
-                result.addAll(itemList);
+                intersections.addAll(points);
             }
         }
-        return result;
+        return intersections;
     }
 }

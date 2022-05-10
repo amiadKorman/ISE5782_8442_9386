@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Amiad Korman & Omer Dayan
  */
-public class Tube implements Geometry{
+public class Tube extends Geometry{
     final protected Ray axisRay;
     final protected double radius;
 
@@ -85,13 +85,13 @@ public class Tube implements Geometry{
     }
 
     /**
-     * implementation of findIntersections from Geometry
+     * implementation of findGeoIntersectionsHelper from Intersectable
      *
      * @param ray {@link Ray}  pointing toward the object
      * @return List of intersection {@link Point}s
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         return null;
     }
 }

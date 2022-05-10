@@ -9,7 +9,7 @@ import primitives.Vector;
  *
  * @author Amiad Korman & Omer Dayan
  */
-public class Cylinder extends Tube implements Geometry {
+public class Cylinder extends Tube {
 
     private double height;
 

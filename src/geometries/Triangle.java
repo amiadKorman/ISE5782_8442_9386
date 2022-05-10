@@ -11,7 +11,7 @@ import static primitives.Util.alignZero;
  *
  * @author Amiad Korman & Omer Dayan
  */
-public class Triangle extends Polygon implements Geometry {
+public class Triangle extends Polygon {
 
     /**
      * Constructor to initialize Triangle based three points
@@ -25,14 +25,15 @@ public class Triangle extends Polygon implements Geometry {
     }
 
     /**
-     * implementation of findIntersections from Geometry
+     * implementation of findGeoIntersectionsHelper from Intersectable
      *
      * @param ray {@link Ray}  pointing toward the object
      * @return List of intersection {@link Point}s
      */
-    public List<Point> findIntersections(Ray ray) {
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         // Gets all intersections with the plane
-        List<Point> result = plane.findIntersections(ray);
+        var result = plane.findGeoIntersections(ray);
 
         // if there is no intersections with the whole plane,
         // then is no intersections with the triangle
@@ -58,7 +59,8 @@ public class Triangle extends Polygon implements Geometry {
         // if all the points have the same sign(+/-),
         // all the points are inside the triangle
         if (a < 0 && b < 0 && c < 0 || a > 0 && b > 0 && c > 0)
-            return result;
+            return List.of(new GeoPoint(this,result.get(0).point));
+            //return result;
 
         return null;
     }

@@ -13,7 +13,7 @@ import static primitives.Util.alignZero;
  *
  * @author Amiad Korman & Omer Dayan
  */
-public class Sphere implements Geometry{
+public class Sphere extends Geometry{
     final private Point center;
     final private double radius;
 
@@ -54,18 +54,18 @@ public class Sphere implements Geometry{
     }
 
     /**
-     * implementation of findIntersections from Geometry
+     * implementation of findGeoIntersectionsHelper from Intersectable
      *
      * @param ray {@link Ray}  pointing toward the object
      * @return List of intersection {@link Point}s
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Point P0 = ray.getP0();
         Vector v = ray.getDir();
 
         if(P0.equals(center)){
-            return List.of(center.add(v.scale(radius)));
+            return List.of(new GeoPoint(this, center.add(v.scale(radius))));
             //throw new IllegalArgumentException("p of Ray is the center of the sphere");
         }
 
@@ -85,16 +85,16 @@ public class Sphere implements Geometry{
         double t2 = alignZero(tm + th);
 
         if(t1 > 0 && t2 > 0){
-            Point p1 = ray.getPoint(t1);
-            Point p2 = ray.getPoint(t2);
+            GeoPoint p1 = new GeoPoint(this,ray.getPoint(t1));
+            GeoPoint p2 =  new GeoPoint(this,ray.getPoint(t2));
             return List.of(p1, p2);
         }
 
         if(t1 > 0)
-            return List.of(ray.getPoint(t1));
+            return List.of(new GeoPoint(this, ray.getPoint(t1)));
 
         if(t2 > 0)
-            return List.of(ray.getPoint(t2));
+            return List.of(new GeoPoint(this, ray.getPoint(t2)));
 
         return null; // no intersections at all
     }

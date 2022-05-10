@@ -11,7 +11,7 @@ import static primitives.Util.*;
  * 
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
 	/**
 	 * List of polygon's vertices
 	 */
@@ -106,13 +106,13 @@ public class Polygon implements Geometry {
 	}
 
 	/**
-	 * implementation of findIntersections from Geometry
+	 * implementation of findGeoIntersectionsHelper from Intersectable
 	 *
 	 * @param ray {@link Ray}  pointing toward the object
 	 * @return List of intersection {@link Point}s
 	 */
 	@Override
-	public List<Point> findIntersections(Ray ray) {
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 		return null;
 	}
 }

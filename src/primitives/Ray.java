@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static primitives.Util.isZero;
+import geometries.Intersectable.GeoPoint;
 
 /**
  * Ray is a line that starts in specific point
@@ -81,15 +82,27 @@ public class Ray {
      * @return the closest point to the origin
      */
     public Point findClosestPoint(List<Point> points) {
+        return points == null || points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+    }
+
+
+    /**
+     * The function takes a list of GeoPoints and returns the closest GeoPoint to the origin
+     *
+     * @param points A list of GeoPoints to search through
+     * @return The closest GeoPoint to the origin.
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> points) {
         if (points == null)
             return null;
 
-        Point result = null;
+        GeoPoint result = null;
         double closest = Double.MAX_VALUE;
         double ptDistance;
 
-        for (Point pt : points) {
-            ptDistance = pt.distance(this.p0);
+        for (var pt : points) {
+            ptDistance = pt.point.distance(this.p0);
             if (ptDistance < closest) {
                 closest = ptDistance;
                 result = pt;
