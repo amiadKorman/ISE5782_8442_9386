@@ -5,6 +5,7 @@ import primitives.Ray;
 import scene.Scene;
 
 /**
+ * This class used to trace rays for the rendering engine
  *
  * @author Amiad Korman & Omer Dayan
  */

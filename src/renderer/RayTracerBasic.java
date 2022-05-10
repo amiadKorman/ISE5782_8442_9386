@@ -8,7 +8,7 @@ import scene.Scene;
 import java.util.List;
 
 /**
- * The `RayTracerBasic` class is a `RayTracerBase` class
+ * This class used to trace rays for the rendering engine
  *
  * @author Amiad Korman & Omer Dayan
  */
@@ -30,11 +30,15 @@ public class RayTracerBasic extends RayTracerBase {
      */
     @Override
     Color traceRay(Ray ray) {
+        // Get all the intersections
         List<Point> intersections = this.scene.getGeometries().findIntersections(ray);
+        // If there is intersections
         if (intersections != null) {
+            // Calculates the closest point to the intersection and returns its color
             Point closestPoint = ray.findClosestPoint(intersections);
             return calcColor(closestPoint);
         }
+        // If there is no intersections at all
         else
             return this.scene.getBackground();
     }

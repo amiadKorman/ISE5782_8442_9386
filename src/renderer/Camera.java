@@ -29,6 +29,11 @@ public class Camera {
     private ImageWriter imageWriter;
     private RayTracerBase rayTracer;
 
+    private static final String RESOURCE_ERROR = "Renderer resource not set";
+    private static final String RENDER_CLASS = "Render";
+    private static final String IMAGE_WRITER_COMPONENT = "Image writer";
+    private static final String RAY_TRACER_COMPONENT = "Ray tracer";
+
     /**
      * This is the constructor of the camera class. It takes 3 vectors as parameters and checks if they are orthogonal.
      * If they are not, it throws an exception.
@@ -176,16 +181,18 @@ public class Camera {
     public void renderImage() {
         // Checks that imageWriter and rayTracer fields isn't empty
         if (this.imageWriter == null)
-            throw new MissingResourceException("Image Writer is missing", ImageWriter.class.getName(), "");
+            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
         if (this.rayTracer == null)
-            throw new MissingResourceException("Ray Tracer is missing", RayTracerBase.class.getName(), "");
+            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, RAY_TRACER_COMPONENT);
         // Rendering the image
         int nX = this.imageWriter.getNx();
         int nY = this.imageWriter.getNy();
-        for (int i = 0; i < nY; i++) {
-            for (int j = 0; j < nX; j++) {
-                Color pixelColor = castRay(nX, nY, j, i);
-                this.imageWriter.writePixel(j, i, pixelColor);
+        // The row of the pixel in the image.
+        for (int row = 0; row < nY; row++) {
+            // The column of the pixel in the image.
+            for (int col = 0; col < nX; col++) {
+                Color pixelColor = castRay(nX, nY, col, row);
+                this.imageWriter.writePixel(col, row, pixelColor);
             }
         }
     }
@@ -195,7 +202,7 @@ public class Camera {
      */
     public void writeToImage() {
         if (this.imageWriter == null) {
-            throw new MissingResourceException("Image Writer is missing", ImageWriter.class.getName(), "");
+            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
         }
         this.imageWriter.writeToImage();
     }
@@ -208,13 +215,17 @@ public class Camera {
      */
     public void printGrid(int interval, Color color) {
         if (this.imageWriter == null) {
-            throw new MissingResourceException("Image Writer is missing", ImageWriter.class.getName(), "");
+            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
         }
         // Prints the grid
-        for (int i = 0; i < this.imageWriter.getNx(); i++) {
-            for (int j = 0; j < this.imageWriter.getNy(); j++) {
-                if (i % interval == 0 || j % interval == 0)
-                    this.imageWriter.writePixel(i, j, color);
+        int nX = this.imageWriter.getNx();
+        int nY = this.imageWriter.getNy();
+        // The row of the pixel in the image.
+        for (int row = 0; row < nY; row++) {
+            // The column of the pixel in the image.
+            for (int col = 0; col < nX; col++) {
+                if (row % interval == 0 || col % interval == 0)
+                    this.imageWriter.writePixel(row, col, color);
             }
         }
     }
