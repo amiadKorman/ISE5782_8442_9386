@@ -2,7 +2,11 @@ package scene;
 
 import lighting.AmbientLight;
 import geometries.Geometries;
+import lighting.Light;
 import primitives.Color;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Scene class
@@ -15,16 +19,18 @@ public class Scene {
     private final Color background;
     private final AmbientLight ambientLight;
     private final Geometries geometries;
+    private final List<Light> lights;
 
     /**
-     *
      * @param builder
+     * @param lights
      */
-    private Scene(SceneBuilder builder) {
-        name = builder.name;
-        background = builder.background;
-        ambientLight = builder.ambientLight;
-        geometries = builder.geometries;
+    private Scene(SceneBuilder builder, List<Light> lights) {
+        this.name = builder.name;
+        this.background = builder.background;
+        this.ambientLight = builder.ambientLight;
+        this.geometries = builder.geometries;
+        this.lights = builder.lights;
     }
 
     /**
@@ -64,11 +70,21 @@ public class Scene {
     }
 
     /**
+     * Getter for the lights in the scene.
+     *
+     * @return The lights.
+     */
+    public List<Light> getLights() {
+        return this.lights;
+    }
+
+    /**
      * inner class SceneBuilder builds Scene object using builder pattern
      */
     public static class SceneBuilder {
 
         private final String name;
+        private List<Light> lights  = new LinkedList<>();
         private Color background = Color.BLACK;;
         private AmbientLight ambientLight = new AmbientLight();
         private Geometries geometries = new Geometries();
@@ -117,13 +133,18 @@ public class Scene {
             return this;
         }
 
+        public SceneBuilder setLights(List<Light> lights) {
+            this.lights = lights;
+            return this;
+        }
+
         /**
          * This function returns the scene that we built.
          *
          * @return A new instance of the Scene class.
          */
         public Scene build() {
-            return new Scene(this);
+            return new Scene(this, lights);
         }
     }
 }

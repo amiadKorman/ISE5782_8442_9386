@@ -178,7 +178,7 @@ public class Camera {
     /**
      * > The function iterates over all the pixels in the image and casts a ray through each pixel
      */
-    public void renderImage() {
+    public Camera renderImage() {
         // Checks that imageWriter and rayTracer fields isn't empty
         if (this.imageWriter == null)
             throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
@@ -195,16 +195,20 @@ public class Camera {
                 this.imageWriter.writePixel(col, row, pixelColor);
             }
         }
+        return this;
     }
 
     /**
      * If the imageWriter is not null, write to the image.
+     *
+     * @return
      */
-    public void writeToImage() {
+    public Camera writeToImage() {
         if (this.imageWriter == null) {
             throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
         }
         this.imageWriter.writeToImage();
+        return this;
     }
 
     /**
