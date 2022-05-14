@@ -101,6 +101,7 @@ public class Ray {
         double closest = Double.MAX_VALUE;
         double ptDistance;
 
+        // A for loop that goes through all the points in the list and finds the closest point to the origin.
         for (var pt : points) {
             ptDistance = pt.point.distance(this.p0);
             if (ptDistance < closest) {

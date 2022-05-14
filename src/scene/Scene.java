@@ -134,6 +134,12 @@ public class Scene {
             return this;
         }
 
+        /**
+         * This function sets the lights of the scene to the given list of lights and returns the scene builder.
+         *
+         * @param lights A list of light sources.
+         * @return The SceneBuilder object.
+         */
         public SceneBuilder setLights(List<LightSource> lights) {
             this.lights = lights;
             return this;

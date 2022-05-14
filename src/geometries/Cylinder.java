@@ -13,8 +13,6 @@ public class Cylinder extends Tube {
 
     private double height;
 
-    // Creating a constructor for the class Cylinder.
-
     /**
      * Cylinder constructor based on parameters
      *

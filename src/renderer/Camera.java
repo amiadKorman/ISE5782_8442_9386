@@ -176,7 +176,7 @@ public class Camera {
     }
 
     /**
-     * > The function iterates over all the pixels in the image and casts a ray through each pixel
+     * The function iterates over all the pixels in the image and casts a ray through each pixel
      */
     public Camera renderImage() {
         // Checks that imageWriter and rayTracer fields isn't empty
@@ -199,9 +199,9 @@ public class Camera {
     }
 
     /**
-     * If the imageWriter is not null, write to the image.
+     * If the image writer is not null, write to image.
      *
-     * @return
+     * @return The camera itself.
      */
     public Camera writeToImage() {
         if (this.imageWriter == null) {

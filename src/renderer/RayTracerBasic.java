@@ -53,6 +53,13 @@ public class RayTracerBasic extends RayTracerBase {
                 .add(calcLocalEffects(gp, ray));
     }
 
+    /**
+     * Calculates local effects of light sources on a certain point
+     *
+     * @param gp The intersection point
+     * @param ray the ray that hit the geometry
+     * @return The color of the point.
+     */
     private Color calcLocalEffects(GeoPoint gp, Ray ray) {
         Color color = gp.geometry.getEmission();
         Vector v = ray.getDir();
@@ -60,10 +67,15 @@ public class RayTracerBasic extends RayTracerBase {
 
         double nv = alignZero(n.dotProduct(v));
 
+        // This is a check to see if the ray is hitting the geometry from the inside.
         if (nv == 0)
             return color;
 
         Material material = gp.geometry.getMaterial();
+
+        // Calculates the color of a point on a surface,
+        // by adding the emission of the surface to the sum of
+        // the diffuse and specular colors of the surface
         for (LightSource lightSource : scene.getLights()) {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
@@ -73,6 +85,7 @@ public class RayTracerBasic extends RayTracerBase {
                         iL.scale(calcSpecular(material, n, l, nl, v)));
             }
         }
+
         return color;
     }
 

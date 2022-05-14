@@ -60,7 +60,6 @@ public class Triangle extends Polygon {
         // all the points are inside the triangle
         if (a < 0 && b < 0 && c < 0 || a > 0 && b > 0 && c > 0)
             return List.of(new GeoPoint(this,result.get(0).point));
-            //return result;
 
         return null;
     }

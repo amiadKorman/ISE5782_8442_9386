@@ -64,7 +64,6 @@ public class Tube extends Geometry{
      * @return normal vector to the tube in point
      */
     @Override
-    // Returning a vector that is perpendicular to the surface of the tube.
     public Vector getNormal(Point point) {
 
         Vector tubeCenterVector = axisRay.getDir();

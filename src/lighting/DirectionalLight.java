@@ -4,6 +4,12 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
 
+
+/**
+ * A directional light is a light that has a direction and an intensity
+ *
+ * @author Amiad Korman & Omer Dayan
+ */
 public class DirectionalLight extends Light implements LightSource{
 
     private Vector direction;
@@ -19,24 +25,24 @@ public class DirectionalLight extends Light implements LightSource{
     }
 
     /**
-     * Given a point, return the intensity of the light at that point.
+     * Implementation of getIntensity from LightSource interface.
      *
-     * @param p The origin of the light.
+     * @param point The origin of the light.
      * @return The intensity of the light.
      */
     @Override
-    public Color getIntensity(Point p) {
+    public Color getIntensity(Point point) {
         return getIntensity();
     }
 
     /**
-     * Given a point, return the light direction vector
+     * Implementation og getL from LightSource interface.
      *
-     * @param p Starting point.
+     * @param point Starting point.
      * @return The direction of the light
      */
     @Override
-    public Vector getL(Point p) {
+    public Vector getL(Point point) {
         return this.direction;
     }
 }

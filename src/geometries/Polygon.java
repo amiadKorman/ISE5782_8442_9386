@@ -85,7 +85,6 @@ public class Polygon extends Geometry {
 	}
 
 	@Override
-	// Overriding the `toString()` method of the `Object` class.
 	public String toString() {
 		return "Polygon{" +
 				"vertices=" + this.vertices +
