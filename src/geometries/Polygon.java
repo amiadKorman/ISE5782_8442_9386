@@ -149,4 +149,5 @@ public class Polygon extends Geometry {
 
 		return List.of(new GeoPoint(this, intersections.get(0).point));
 	}
+
 }
