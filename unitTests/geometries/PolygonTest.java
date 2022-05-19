@@ -2,7 +2,10 @@ package geometries;
 
 import org.junit.jupiter.api.Test;
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
@@ -104,5 +107,71 @@ class PolygonTest {
         double sqrt3 = Math.sqrt(1d / 3);
         assertEquals(new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point(0, 0, 1)),
                 "Bad normal to triangle");
+    }
+
+    /**
+     * Test method for {@link geometries.Polygon#findIntersections(Ray)}.
+     */
+    @Test
+    void findIntersections() {
+
+        Polygon polygon = new Polygon(
+                new Point(2, 0, 0),
+                new Point(4, 0, 0),
+                new Point(4, 0, 4),
+                new Point(2, 0, 2));
+
+        // ============ Equivalence Partitions Tests ==============
+
+        // TC01: Inside polygon
+        assertEquals(
+                new Point(3, 0, 1),
+                polygon.findIntersections(
+                        new Ray(
+                                new Point(3, -1, 1),
+                                new Vector(0, 1, 0))).get(0),
+                "Ray  isn't inside the polygon");
+
+        // TC02: Outside against edge
+        assertNull(
+                polygon.findIntersections(
+                        new Ray(
+                                new Point(1, -1, 1),
+                                new Vector(0, 1, 0))),
+                "Ray isn't outside against edge");
+
+        // TC03: Outside against vertex
+        assertNull(
+                polygon.findIntersections(
+                        new Ray(
+                                new Point(1, -1, -1),
+                                new Vector(0, 1, 0))),
+                "Ray isn't outside against vertex");
+
+        // =============== Boundary Values Tests ==================
+
+        // TC11: Ray on edge
+        assertNull(
+                polygon.findIntersections(
+                        new Ray(
+                            new Point(2, -1, 1),
+                            new Vector(0, 1, 0))),
+                "Ray  isn't on edge of the polygon");
+
+        // TC12: Ray in vertex
+        assertNull(
+                polygon.findIntersections(
+                        new Ray(
+                                new Point(2, -1, 2),
+                                new Vector(0, 1, 0))),
+                "Ray isn't on vertex of the polygon");
+
+        // TC13: Ray On edge's continuation
+        assertNull(
+                polygon.findIntersections(
+                        new Ray(
+                                new Point(2, -1, 3),
+                                new Vector(0, 1, 0))),
+                "Ray  isn't On edge's continuation");
     }
 }
