@@ -91,13 +91,14 @@ public class Plane extends Geometry {
     }
 
     /**
-     * implementation of findGeoIntersectionsHelper from Intersectable
+     * Finds the intersection points of the ray with the surface of the object
      *
-     * @param ray {@link Ray}  pointing toward the object
-     * @return List of intersection {@link Point}s
+     * @param ray The ray to intersect with the GeoPoint.
+     * @param maxDistance The maximum distance from the source of the ray to intersect with.
+     * @return A list of GeoPoints that are the intersections of the ray with the object.
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         Point P0 = ray.getP0();
         Vector v = ray.getDir();
         Vector n = normal;
@@ -128,7 +129,7 @@ public class Plane extends Geometry {
         double t = alignZero(nQMinusP0 / nv);
 
         // t should be > 0
-        if (t <= 0) {
+        if (t < 0 || alignZero(t - maxDistance) > 0) {
             return null;
         }
 

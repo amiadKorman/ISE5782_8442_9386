@@ -25,15 +25,16 @@ public class Triangle extends Polygon {
     }
 
     /**
-     * implementation of findGeoIntersectionsHelper from Intersectable
+     * Finds the intersection points of the ray with the surface of the object
      *
-     * @param ray {@link Ray}  pointing toward the object
-     * @return List of intersection {@link Point}s
+     * @param ray The ray to intersect with the GeoPoint.
+     * @param maxDistance The maximum distance from the source of the ray to intersect with.
+     * @return A list of GeoPoints that are the intersections of the ray with the object.
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         // Gets all intersections with the plane
-        var result = plane.findGeoIntersections(ray);
+        var result = plane.findGeoIntersections(ray, maxDistance);
 
         // if there is no intersections with the whole plane,
         // then is no intersections with the triangle

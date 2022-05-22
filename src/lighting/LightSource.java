@@ -26,4 +26,12 @@ public interface LightSource {
      * @return The direction of the light
      */
     public Vector getL(Point p);
+
+    /**
+     * Returns the distance from the light source to the given point.
+     *
+     * @param point The point to which the distance is to be calculated.
+     * @return The distance between the point and the light source.
+     */
+    double getDistance(Point point);
 }

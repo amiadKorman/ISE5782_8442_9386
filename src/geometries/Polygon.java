@@ -105,14 +105,15 @@ public class Polygon extends Geometry {
 	}
 
 	/**
-	 * implementation of findGeoIntersectionsHelper from Intersectable
+	 * Finds the intersection points of the ray with the surface of the object
 	 *
-	 * @param ray {@link Ray}  pointing toward the object
-	 * @return List of intersection {@link Point}s
+	 * @param ray The ray to intersect with the GeoPoint.
+	 * @param maxDistance The maximum distance from the source of the ray to intersect with.
+	 * @return A list of GeoPoints that are the intersections of the ray with the object.
 	 */
 	@Override
-	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-		List<GeoPoint> intersections = this.plane.findGeoIntersections(ray);
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
+		List<GeoPoint> intersections = this.plane.findGeoIntersections(ray, maxDistance);
 
 		// if there is no Intersections at all in the plane
 		if (intersections == null)

@@ -18,8 +18,8 @@ public class Ray {
     /**
      * Constructor to initialize Ray based object with its point value and vector value
      *
-     * @param p0  point value
-     * @param dir vector value
+     * @param p0  origin
+     * @param dir direction
      */
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;

@@ -65,4 +65,5 @@ public class SpotLight extends PointLight{
         // Scaling the intensity of the light source by the factor.
         return Ic.scale(factor);
     }
+
 }

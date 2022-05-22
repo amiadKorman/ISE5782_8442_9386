@@ -18,6 +18,11 @@ import static primitives.Util.alignZero;
 public class RayTracerBasic extends RayTracerBase {
 
     /**
+     * DELTA value to move the point away from original point
+     */
+    private static final double DELTA = 0.1;
+
+    /**
      * Constructor for RayTracerBasic
      *
      * @param scene
@@ -80,9 +85,11 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                Color iL = lightSource.getIntensity(gp.point);
-                color = color.add(iL.scale(calcDiffusive(material, nl)),
-                        iL.scale(calcSpecular(material, n, l, nl, v)));
+                if(unshaded(gp, lightSource, l, n, nl)) {
+                    Color iL = lightSource.getIntensity(gp.point);
+                    color = color.add(iL.scale(calcDiffusive(material, nl)),
+                            iL.scale(calcSpecular(material, n, l, nl, v)));
+                }
             }
         }
 
@@ -117,5 +124,35 @@ public class RayTracerBasic extends RayTracerBase {
     private Double3 calcDiffusive(Material material, double nl) {
         nl = Math.abs(nl);
         return material.getKd().scale(nl);
+    }
+
+
+    /**
+     * If the ray from the point to the light source intersects with any other geometry, then the point is shaded
+     *
+     * @param gp The point on the geometry that we're shading
+     * @param lightSource The light source that we're checking if it's shaded or not.
+     * @param l The vector from the point to the light source
+     * @param n the normal vector of the point
+     * @param nv the dot product of the normal vector and the vector from the camera to the point
+     * @return true if the point is unshaded, and false if it is shaded.
+     */
+    private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n, double nv){
+        Vector lightDirection = l.scale(-1); // from point to light source
+        double nl = n.dotProduct(lightDirection);
+
+        // This is a vector that is used to move the point away from the surface of the geometry.
+        Vector deltaVector = n.scale(nl > 0 ? DELTA : -DELTA);
+
+        // This is a ray that is sent from the point to the light source.
+        Ray lightRay = new Ray(gp.point.add(deltaVector),lightDirection);
+
+        // Calculates the maximum distance from the ray to the surface
+        double maxDistance = lightSource.getDistance(gp.point);
+
+        // Get the intersections
+        List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(lightRay, maxDistance);
+
+        return intersections == null;
     }
 }
