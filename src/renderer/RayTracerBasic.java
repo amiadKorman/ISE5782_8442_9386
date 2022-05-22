@@ -155,4 +155,5 @@ public class RayTracerBasic extends RayTracerBase {
 
         return intersections == null;
     }
+
 }
