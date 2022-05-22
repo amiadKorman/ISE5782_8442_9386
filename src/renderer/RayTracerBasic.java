@@ -21,6 +21,8 @@ public class RayTracerBasic extends RayTracerBase {
      * DELTA value to move the point away from original point
      */
     private static final double DELTA = 0.1;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
 
     /**
      * Constructor for RayTracerBasic
