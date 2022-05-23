@@ -12,6 +12,10 @@ import geometries.Intersectable.GeoPoint;
  * @author Amiad Korman & Omer Dayan
  */
 public class Ray {
+    /**
+     * DELTA value to move the point away from original point
+     */
+    private static final double DELTA = 0.1;
     private final Point p0;
     private final Vector dir;
 
@@ -23,6 +27,18 @@ public class Ray {
      */
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
+        this.dir = dir.normalize();
+    }
+
+    /**
+     * Constructor for ray deflected by epsilon
+     *
+     * @param p0 origin
+     * @param n normal vector
+     * @param dir direction
+     */
+    public Ray(Point p0, Vector n, Vector dir) {
+        this.p0 = p0.add(n.scale(n.dotProduct(dir) > 0 ? DELTA : -DELTA));
         this.dir = dir.normalize();
     }
 

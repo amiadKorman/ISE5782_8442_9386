@@ -31,6 +31,24 @@ public class Material {
     }
 
     /**
+     * Getter for Kt field.
+     *
+     * @return The value of transparency coefficient.
+     */
+    public Double3 getKt() {
+        return Kt;
+    }
+
+    /**
+     * Getter for Kr field.
+     *
+     * @return The value of reflection coefficient.
+     */
+    public Double3 getKr() {
+        return Kr;
+    }
+
+    /**
      * Getter for nShininess field.
      *
      * @return The shininess of the material.

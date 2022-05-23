@@ -2,7 +2,6 @@ package scene;
 
 import lighting.AmbientLight;
 import geometries.Geometries;
-import lighting.Light;
 import lighting.LightSource;
 import primitives.Color;
 
@@ -23,8 +22,9 @@ public class Scene {
     private final List<LightSource> lights;
 
     /**
-     * @param builder
-     * @param lights
+     * Constructor builder
+     * @param builder The scene that we built
+     * @param lights List of lights in scene
      */
     private Scene(SceneBuilder builder, List<LightSource> lights) {
         this.name = builder.name;
@@ -79,6 +79,11 @@ public class Scene {
         return this.lights;
     }
 
+    /**
+     * Setter for the ambient light field.
+     *
+     * @param ambientLight The AmbientLight object that will be used to light the scene.
+     */
     public void setAmbientLight(AmbientLight ambientLight) {
         this.ambientLight = ambientLight;
     }
@@ -90,7 +95,7 @@ public class Scene {
 
         private final String name;
         private List<LightSource> lights  = new LinkedList<>();
-        private Color background = Color.BLACK;;
+        private Color background = Color.BLACK;
         private AmbientLight ambientLight = new AmbientLight();
         private Geometries geometries = new Geometries();
 

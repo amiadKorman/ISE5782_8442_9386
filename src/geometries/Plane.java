@@ -14,9 +14,8 @@ import static primitives.Util.*;
  *
  * @author Amiad Korman & Omer Dayan
  */
-public class Plane extends Geometry {
+public class Plane extends FlatGeometry {
     final private Point q0;
-    final private Vector normal;
 
     /**
      * Constructor to initialize Plane based object with its three points
@@ -26,14 +25,14 @@ public class Plane extends Geometry {
      * @param p3 third point
      */
     public Plane(Point p1, Point p2, Point p3) {
-        q0 = p1;
+        this.q0 = p1;
 
         Vector U = p2.subtract(p1);
         Vector V = p3.subtract(p1);
 
         Vector N = U.crossProduct(V);
 
-        normal = N.normalize();
+        this.normal = N.normalize();
     }
 
     /**
