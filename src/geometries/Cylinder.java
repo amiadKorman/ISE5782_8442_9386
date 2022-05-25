@@ -4,6 +4,10 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
+import static primitives.Util.alignZero;
+
 /**
  * class representing a Cylinder
  *
@@ -11,7 +15,30 @@ import primitives.Vector;
  */
 public class Cylinder extends Tube {
 
-    private double height;
+    private final double height;
+    /**
+     * bottom base of Cylinder
+     */
+    private final Plane bottomBase;
+
+    /**
+     * upper base of Cylinder
+     */
+    private final Plane upperBase;
+
+    /**
+     * center Point of bottom base of Cylinder
+     */
+    private final Point bottomCenter;
+
+    /**
+     * center Point of upper base of Cylinder
+     */
+    private final Point upperCenter;
+    /**
+     * direction of Ray of Cylinder
+     */
+    private final Vector va;
 
     /**
      * Cylinder constructor based on parameters
@@ -23,6 +50,11 @@ public class Cylinder extends Tube {
     public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
         this.height = height;
+        this.va = this.axisRay.getDir();
+        this.bottomCenter = this.axisRay.getP0();
+        this.upperCenter = this.axisRay.getPoint(this.height);
+        this.bottomBase = new Plane(this.bottomCenter, this.va);
+        this.upperBase = new Plane(this.upperCenter, this.va);
     }
 
     /**
@@ -78,5 +110,63 @@ public class Cylinder extends Tube {
         Vector v = point.subtract(center);
 
         return v.normalize();
+    }
+
+    /**
+     * Helper function to check whether an intersection Point calculated for infinite cylinder
+     * is between the bases of the Cylinder or outside it
+     *
+     * @param p Intersection Point
+     * @return the GeoPoint for the cylinder with the p point if it is on the Cylinder, null otherwise
+     */
+    private GeoPoint checkIntersection(Point p) {
+        if (p == null) return null;
+        return alignZero(this.va.dotProduct(p.subtract(this.bottomCenter))) > 0
+                && alignZero(this.va.dotProduct(p.subtract(this.upperCenter))) < 0
+                ? new GeoPoint(this, p) : null;
+    }
+
+    /**
+     * Helper function to find an intersection Point with Cylinder's base
+     *
+     * @param base   Base of Cylinder
+     * @param ray    Ray to find intersection with
+     * @param center Center Point of Cylinder's base
+     * @return GeoPoint with the cylinder and the point on a base
+     */
+    private GeoPoint baseIntersection(Plane base, Ray ray, Point center) {
+        List<GeoPoint> lst = base.findGeoIntersections(ray); //intersection Points with Plane
+        if (lst == null) return null;
+        Point p = lst.get(0).point;
+        return alignZero(p.distanceSquared(center) - this.sqrRadius) < 0 ? new GeoPoint(this, p) : null;
+    }
+
+    @Override
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
+        //Step 1 - finding intersection Points with bases:
+        GeoPoint gp1 = baseIntersection(this.bottomBase, ray, this.bottomCenter); //intersection Point with bottom base
+        GeoPoint gp2 = baseIntersection(this.upperBase, ray, this.upperCenter); //intersection Point with upper base
+
+        if (gp1 != null && gp2 != null) {
+            double gp1D = gp1.point.distance(ray.getP0());
+            double gp2D = gp2.point.distance(ray.getP0());
+
+            return (gp1D <= maxDistance && gp2D <= maxDistance) ? twoPoints(ray, gp1, gp2) :
+                    (gp1D <= maxDistance) ? List.of(gp1) : (gp2D <= maxDistance) ? List.of(gp2) : null;
+        }
+
+        GeoPoint basePoint = gp1 != null ? gp1 : gp2;
+
+        //Step 2 - checking if intersection Points with Tube are on Cylinder itself:
+        List<GeoPoint> lst = super.findGeoIntersectionsHelper(ray, maxDistance); //intersection Points with Tube
+        if (lst == null) return basePoint == null ? null : List.of(basePoint);
+
+        gp1 = checkIntersection(lst.get(0).point);
+        gp2 = lst.size() < 2 ? null : checkIntersection(lst.get(1).point);
+        if (basePoint != null)
+            return gp1 != null ? twoPoints(ray, basePoint, gp1)
+                    : gp2 != null ? twoPoints(ray, basePoint, gp2) : List.of(basePoint);
+        if (gp1 == null) return gp2 != null ? List.of(gp2) : null;
+        return gp2 != null ? twoPoints(ray, gp1, gp2) : List.of(gp1);
     }
 }
