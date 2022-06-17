@@ -20,7 +20,6 @@ public class Polygon extends FlatGeometry {
 	 * Associated plane in which the polygon lays
 	 */
 	protected final Plane plane;
-	private int size;
 
 	/**
 	 * Polygon constructor based on vertices list. The list must be ordered by edge
@@ -51,10 +50,10 @@ public class Polygon extends FlatGeometry {
 		// polygon with this plane.
 		// The plane holds the invariant normal (orthogonal unit) vector to the polygon
 		this.plane = new Plane(vertices[0], vertices[1], vertices[2]);
+		this.normal = this.plane.getNormal();
+
 		if (vertices.length == 3)
 			return; // no need for more tests for a Triangle
-
-		Vector n = this.plane.getNormal();
 
 		// Subtracting any subsequent points will throw an IllegalArgumentException
 		// because of Zero Vector if they are in the same point
@@ -70,19 +69,17 @@ public class Polygon extends FlatGeometry {
 		// the normal. If all the rest consequent edges will generate the same sign -
 		// the
 		// polygon is convex ("kamur" in Hebrew).
-		boolean positive = edge1.crossProduct(edge2).dotProduct(n) > 0;
+		boolean positive = edge1.crossProduct(edge2).dotProduct(this.normal) > 0;
 		for (var i = 1; i < vertices.length; ++i) {
 			// Test that the point is in the same plane as calculated originally
-			if (!isZero(vertices[i].subtract(vertices[0]).dotProduct(n)))
+			if (!isZero(vertices[i].subtract(vertices[0]).dotProduct(this.normal)))
 				throw new IllegalArgumentException("All vertices of a polygon must lay in the same plane");
 			// Test the consequent edges have
 			edge1 = edge2;
 			edge2 = vertices[i].subtract(vertices[i - 1]);
-			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
+			if (positive != (edge1.crossProduct(edge2).dotProduct(this.normal) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
-		this.size = vertices.length;
-		this.normal = n;
 	}
 
 	@Override
@@ -90,7 +87,6 @@ public class Polygon extends FlatGeometry {
 		return "Polygon{" +
 				"vertices=" + this.vertices +
 				", plane=" + this.plane +
-				", size=" + this.size +
 				'}';
 	}
 
@@ -102,8 +98,8 @@ public class Polygon extends FlatGeometry {
 	 */
 	@Override
 	public Vector getNormal(Point point) {
-		return this.plane.getNormal();
-		//return this.normal;
+		//return this.plane.getNormal();
+		return this.normal;
 	}
 
 	/**

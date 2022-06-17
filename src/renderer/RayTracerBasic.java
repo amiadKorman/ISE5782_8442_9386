@@ -234,7 +234,6 @@ public class RayTracerBasic extends RayTracerBase {
         return material.getKd().scale(nl);
     }
 
-
     /**
      * The function checks returns if the point is unshaded or shaded.
      *

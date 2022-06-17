@@ -117,7 +117,7 @@ public class LightsTests {
 	}
 
 	/**
-	 * Produce a picture of a two triangles lighted by a spot light
+	 * Produce a picture of a two triangles lighted by a spotlight
 	 */
 	@Test
 	public void trianglesSpot() {

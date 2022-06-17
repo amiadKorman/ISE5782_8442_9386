@@ -15,6 +15,10 @@ import static primitives.Util.*;
  * @author Amiad Korman & Omer Dayan
  */
 public class Plane extends FlatGeometry {
+
+    /**
+     * reference point in the plane
+     */
     final private Point q0;
 
     /**

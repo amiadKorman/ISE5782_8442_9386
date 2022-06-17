@@ -11,7 +11,7 @@ import primitives.Vector;
  */
 public class SpotLight extends PointLight{
     private final Vector direction;
-    private double narrowBeam = 0d;
+    private double narrowBeam = 1d;
 
     /**
      * Constructor
@@ -55,12 +55,12 @@ public class SpotLight extends PointLight{
     public Color getIntensity(Point point) {
         // Calculating the intensity of the light source.
         Color Ic = super.getIntensity(point);
-        double lv = getL(point).dotProduct(direction);
-        double factor = Math.max(0, lv);
-        // if narrowBeam field has changed, calculate the narrow beam of the light.
-        if(narrowBeam != 0)
-            // A way to make the light more focused.
-            factor = Math.pow(factor, narrowBeam);
+        double projection = getL(point).dotProduct(direction);
+
+        double factor = Math.max(0, projection);
+
+        // A way to make the light more focused.
+        factor = Math.pow(factor, narrowBeam);
 
         // Scaling the intensity of the light source by the factor.
         return Ic.scale(factor);
