@@ -16,24 +16,50 @@ import static primitives.Util.isZero;
  * @author Amiad Korman & Omer Dayan
  */
 public class Camera {
-
+    /**
+     * Camera's right direction
+     */
     private Vector vRight;
+    /**
+     * Camera's forward direction.
+     */
     private Vector vTo;
+    /**
+     * Camera's upper direction.
+     */
     private Vector vUp;
+    /**
+     * Camera's location.
+     */
     private Point p0;
-
+    /**
+     * The distance between the camera and the view plane.
+     */
     private double distance;
+    /**
+     * View plane's width.
+     */
     private int width;
+    /**
+     * View plane's height.
+     */
     private int height;
-
+    /**
+     * Image writer field.
+     */
     private ImageWriter imageWriter;
+    /**
+     * Ray tracer field.
+     */
     private RayTracerBase rayTracer;
 
+    // ***************** Error messages ********************** //
     private static final String RESOURCE_ERROR = "Renderer resource not set";
     private static final String RENDER_CLASS = "Render";
     private static final String IMAGE_WRITER_COMPONENT = "Image writer";
     private static final String RAY_TRACER_COMPONENT = "Ray tracer";
 
+    // ***************** Constructor ********************** //
     /**
      * This is the constructor of the camera class. It takes 3 vectors as parameters and checks if they are orthogonal.
      * If they are not, it throws an exception.
@@ -52,6 +78,7 @@ public class Camera {
         this.vRight = this.vTo.crossProduct(this.vUp);
     }
 
+    // ***************** Getters/Setters ********************** //
     /**
      * Getter for the distance field of Camera
      *
@@ -125,6 +152,7 @@ public class Camera {
         return this;
     }
 
+    // ***************** Operations ******************** //
     /**
      * Construct a ray through the pixel [i,j] on the view plane,
      * when the view plane is divided into nX by nY rectangular cells

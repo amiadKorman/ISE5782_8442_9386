@@ -93,12 +93,11 @@ public class Polygon extends FlatGeometry {
 	/**
 	 * implementation of getNormal from Geometry
 	 *
-	 * @param point
+	 * @param point The point on the polygon's surface.
 	 * @return normal vector to the sphere in point
 	 */
 	@Override
 	public Vector getNormal(Point point) {
-		//return this.plane.getNormal();
 		return this.normal;
 	}
 

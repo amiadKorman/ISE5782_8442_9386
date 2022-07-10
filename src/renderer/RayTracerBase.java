@@ -10,11 +10,14 @@ import scene.Scene;
  * @author Amiad Korman & Omer Dayan
  */
 public abstract class RayTracerBase {
+    /**
+     * The scene that we built
+     */
     protected final Scene scene;
 
     /**
      * Constructor for RayTracerBase
-     * @param scene
+     * @param scene Our scene
      */
     protected RayTracerBase(Scene scene){
         this.scene = scene;

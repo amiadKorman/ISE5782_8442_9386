@@ -14,14 +14,20 @@ import static primitives.Util.alignZero;
  * @author Amiad Korman & Omer Dayan
  */
 public class Sphere extends Geometry{
+    /**
+     * Center of Sphere.
+     */
     final private Point center;
+    /**
+     * Radius od Sphere.
+     */
     final private double radius;
 
     /**
      * Constructor to initialize Sphere based object with its center point and radius
      *
-     * @param center
-     * @param radius
+     * @param center Sphere's center.
+     * @param radius Sphere's radius.
      */
     public Sphere(Point center, double radius) {
         this.center = center;
@@ -44,7 +50,7 @@ public class Sphere extends Geometry{
     /**
      * implementation of getNormal from Geometry
      *
-     * @param point
+     * @param point The point on the sphere's surface.
      * @return normal vector to the sphere in point
      */
     @Override

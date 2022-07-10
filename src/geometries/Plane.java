@@ -65,7 +65,7 @@ public class Plane extends FlatGeometry {
     }
 
     /**
-     * Getter for _q0 field
+     * Getter for q0 field
      *
      * @return point in the plane
      */
@@ -74,7 +74,7 @@ public class Plane extends FlatGeometry {
     }
 
     /**
-     * Getter for _normal field
+     * Getter for normal field
      *
      * @return the normal vector of the plane.
      */
@@ -85,7 +85,7 @@ public class Plane extends FlatGeometry {
     /**
      * implementation of getNormal from Geometry
      *
-     * @param point
+     * @param point The point on the plane's surface.
      * @return normal vector to the plane in point
      */
     @Override

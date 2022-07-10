@@ -16,15 +16,20 @@ public abstract class Intersectable {
      * This class represent geometric body and point in it.
      */
     public static class GeoPoint{
-
+        /**
+         * geometry of geoPoint
+         */
         public final Geometry geometry;
+        /**
+         * point of geoPoint
+         */
         public final Point point;
 
         /**
          * Constructor for GeoPoint
          *
-         * @param geometry
-         * @param point
+         * @param geometry GeoPoint's Geometry
+         * @param point GeoPoint's Point
          */
         public GeoPoint(Geometry geometry, Point point){
             this.geometry = geometry;
@@ -68,7 +73,7 @@ public abstract class Intersectable {
     }
 
     /**
-     * This function returns a list of all the intersections of the ray with the geometry of the scene
+     * Returns a list of all the intersections of the ray with the geometry of the scene
      *
      * @param ray The ray to find intersections with.
      * @return A list of GeoPoints.
@@ -77,6 +82,13 @@ public abstract class Intersectable {
         return findGeoIntersections(ray, Double.POSITIVE_INFINITY);
     }
 
+    /**
+     * Returns a list of GeoPoints where a ray intersects with.
+     *
+     * @param ray The ray to intersect with the GeoPoint.
+     * @param maxDistance The maximum distance to search for intersections.
+     * @return A list of GeoPoints.
+     */
     public final List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
         return findGeoIntersectionsHelper(ray, maxDistance);
     }

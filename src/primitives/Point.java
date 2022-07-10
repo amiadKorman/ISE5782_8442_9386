@@ -8,7 +8,13 @@ import java.util.Objects;
  * @author Amiad Korman & Omer Dayan
  */
 public class Point {
+    /**
+     * Default point zero.
+     */
     public static final Point ZERO = new Point(0, 0, 0);
+    /**
+     * Quardinate in scene.
+     */
     final protected Double3 xyz;
 
     /**

@@ -11,13 +11,11 @@ import java.util.List;
  *
  * @author Amiad Korman & Omer Dayan
  */
-
-/**
- * A collection of intersectables
- */
 public class Geometries extends Intersectable {
 
-    // A private list of intersectable.
+    /**
+     * A private list of intersectable.
+     */
     private List<Intersectable> intersectables;
 
     /**
@@ -30,7 +28,7 @@ public class Geometries extends Intersectable {
     /**
      * Geometries constructor based on intersectables list
      *
-     * @param intersectables
+     * @param intersectables Linked list of the geometries we stored.
      */
     public Geometries(Intersectable... intersectables) {
         this();
@@ -40,7 +38,7 @@ public class Geometries extends Intersectable {
     /**
      * Takes an array of Intersectables and adds them to the list of Intersectables
      *
-     * @param intersectables
+     * @param intersectables Linked list of the geometries we stored.
      */
     public void add(Intersectable... intersectables) {
         Collections.addAll(this.intersectables, intersectables);

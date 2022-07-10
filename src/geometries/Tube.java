@@ -6,8 +6,6 @@ import primitives.Vector;
 
 import java.util.List;
 
-import primitives.*;
-
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
@@ -17,15 +15,24 @@ import static primitives.Util.isZero;
  * @author Amiad Korman & Omer Dayan
  */
 public class Tube extends Geometry{
+    /**
+     * Central ray of Tube
+     */
     final protected Ray axisRay;
+    /**
+     * Radius of Tube
+     */
     final protected double radius;
+    /**
+     * Helper field for calculating
+     */
     protected final double sqrRadius;
 
     /**
      * Constructor to initialize Tube based object with its
      *
-     * @param axisRay of the Tube
-     * @param radius of the Tube
+     * @param axisRay of the Tube.
+     * @param radius of the Tube.
      */
     public Tube(Ray axisRay, double radius) {
         this.axisRay = axisRay;
@@ -34,7 +41,7 @@ public class Tube extends Geometry{
     }
 
     /**
-     * Getter for the axis ray
+     * Getter for the axis ray.
      *
      * @return A ray that is perpendicular to the axis of the cylinder.
      */
@@ -43,7 +50,7 @@ public class Tube extends Geometry{
     }
 
     /**
-     * Getter for the radius of the Tube
+     * Getter for the radius of the Tube.
      *
      * @return The radius of the Tube.
      */
@@ -52,9 +59,9 @@ public class Tube extends Geometry{
     }
 
     /**
-     * Overrides the toString method in the Object class
+     * Overrides the toString method in the Object class.
      *
-     * @return string that describe the tube
+     * @return string that describe the tube.
      */
     @Override
     public String toString() {
@@ -65,10 +72,10 @@ public class Tube extends Geometry{
     }
 
     /**
-     * implementation of getNormal from Geometry
+     * Implementation of getNormal from Geometry.
      *
-     * @param point
-     * @return normal vector to the tube in point
+     * @param point The point on the tube's surface.
+     * @return The normal vector to the Tube at the given point.
      */
     @Override
     public Vector getNormal(Point point) {
@@ -91,24 +98,12 @@ public class Tube extends Geometry{
     }
 
     /**
-     * Finds the intersection points of the ray with the surface of the object
+     * Create list of two points on a ray according to the order from ray's head.
      *
-     * @param ray The ray to intersect with the GeoPoint.
-     * @param maxDistance The maximum distance from the source of the ray to intersect with.
-     * @return A list of GeoPoints that are the intersections of the ray with the object.
-     */
-    //@Override
-    //protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
-    //    return null;
-    //}
-
-    /**
-     * Create list of two points on a ray according to the order from ray's head
-     *
-     * @param ray to check the distance from its head
-     * @param p1  1st point
-     * @param p2  2nd point
-     * @return ordered list of the two points
+     * @param ray to check the distance from its head.
+     * @param p1  1st point.
+     * @param p2  2nd point.
+     * @return ordered list of the two points.
      */
     protected List<GeoPoint> twoPoints(Ray ray, GeoPoint p1, GeoPoint p2) {
         Point p0 = ray.getP0();

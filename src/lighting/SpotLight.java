@@ -10,7 +10,13 @@ import primitives.Vector;
  * @author Amiad Korman & Omer Dayan
  */
 public class SpotLight extends PointLight{
+    /**
+     * Light direction.
+     */
     private final Vector direction;
+    /**
+     * Narrow beam factor.
+     */
     private double narrowBeam = 1d;
 
     /**

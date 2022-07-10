@@ -10,12 +10,22 @@ import primitives.Vector;
  * @author Amiad Korman & Omer Dayan
  */
 public class PointLight extends Light implements LightSource{
-
+    /**
+     * Light position in the scene.
+     */
     private final Point position;
-
-    private double Kc = 1d; // constant attenuation factor
-    private double Kl = 0d; // light's attenuation factor
-    private double Kq = 0d; // quadratic attenuation factor
+    /**
+     * Constant attenuation factor.
+     */
+    private double Kc = 1d;
+    /**
+     * Light's attenuation factor.
+     */
+    private double Kl = 0d;
+    /**
+     * Quadratic attenuation factor.
+     */
+    private double Kq = 0d;
 
     /**
      * Constructor for PointLight class

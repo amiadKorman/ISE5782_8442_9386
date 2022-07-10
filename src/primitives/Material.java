@@ -6,11 +6,26 @@ package primitives;
  * @author Amiad Korman & Omer Dayan
  */
 public class Material {
-    private Double3 Kd = Double3.ZERO;  // diffuse
-    private Double3 Ks = Double3.ZERO;  // specular
-    private Double3 Kt = Double3.ZERO;  // transparency
-    private Double3 Kr = Double3.ZERO;  // reflection
-    private int nShininess = 0;  // shininess
+    /**
+     * Diffuse factor
+     */
+    private Double3 Kd = Double3.ZERO;
+    /**
+     * Specular factor
+     */
+    private Double3 Ks = Double3.ZERO;
+    /**
+     * Transparency factor
+     */
+    private Double3 Kt = Double3.ZERO;
+    /**
+     * Reflection factor
+     */
+    private Double3 Kr = Double3.ZERO;
+    /**
+     * Shininess factor
+     */
+    private int nShininess = 0;
 
     /**
      * Getter for Ks field.

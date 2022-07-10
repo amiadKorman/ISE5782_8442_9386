@@ -8,6 +8,9 @@ import primitives.Color;
  * @author Amiad Korman & Omer Dayan
  */
 public abstract class Light {
+    /**
+     * Light color intensity.
+     */
     private Color intensity;
 
     /**

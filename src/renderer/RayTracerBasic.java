@@ -16,9 +16,17 @@ import static primitives.Util.alignZero;
  * @author Amiad Korman & Omer Dayan
  */
 public class RayTracerBasic extends RayTracerBase {
-
+    /**
+     * Defines the maximum recursion level of the `calcColor` function.
+     */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
+    /**
+     * Defines the minimum value of the k coefficient.
+     */
     private static final double MIN_CALC_COLOR_K = 0.001;
+    /**
+     * Defines the initial value of the k coefficient.
+     */
     private static final Double3 INITIAL_K = Double3.ONE;
 
 

@@ -13,10 +13,16 @@ import geometries.Intersectable.GeoPoint;
  */
 public class Ray {
     /**
-     * DELTA value to move the point away from original point
+     * DELTA value to move the point away from original point.
      */
     private static final double DELTA = 0.1;
+    /**
+     * Ray's start point.
+     */
     private final Point p0;
+    /**
+     * Ray's direction.
+     */
     private final Vector dir;
 
     /**

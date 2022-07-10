@@ -9,43 +9,43 @@ import java.util.List;
 import static primitives.Util.alignZero;
 
 /**
- * class representing a Cylinder
+ * Class representing a Cylinder
  *
  * @author Amiad Korman & Omer Dayan
  */
 public class Cylinder extends Tube {
 
+    /**
+     * Height of Cylinder.
+     */
     private final double height;
     /**
-     * bottom base of Cylinder
+     * Bottom base of Cylinder.
      */
     private final Plane bottomBase;
-
     /**
-     * upper base of Cylinder
+     * Upper base of Cylinder.
      */
     private final Plane upperBase;
-
     /**
-     * center Point of bottom base of Cylinder
+     * Center Point of bottom base of Cylinder.
      */
     private final Point bottomCenter;
-
     /**
-     * center Point of upper base of Cylinder
+     * Center Point of upper base of Cylinder.
      */
     private final Point upperCenter;
     /**
-     * direction of Ray of Cylinder
+     * Direction of Ray of Cylinder.
      */
     private final Vector va;
 
     /**
-     * Cylinder constructor based on parameters
+     * Cylinder constructor based on parameters.
      *
-     * @param axisRay
-     * @param radius
-     * @param height
+     * @param axisRay Central ray of Cylinder
+     * @param radius Radius of Cylinder.
+     * @param height Height of Cylinder.
      */
     public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
@@ -58,7 +58,7 @@ public class Cylinder extends Tube {
     }
 
     /**
-     * Getter for the value of the height field
+     * Getter for the value of the height field.
      *
      * @return The height of the rectangle.
      */
@@ -76,10 +76,10 @@ public class Cylinder extends Tube {
     }
 
     /**
-     * implementation of getNormal from Geometry
+     * Implementation of getNormal from Geometry.
      *
-     * @param point
-     * @return normal vector to the sphere in point
+     * @param point The point on the cylinder's surface.
+     * @return The normal vector to the cylinder at the given point.
      */
     public Vector getNormal(Point point) {
 
@@ -114,10 +114,10 @@ public class Cylinder extends Tube {
 
     /**
      * Helper function to check whether an intersection Point calculated for infinite cylinder
-     * is between the bases of the Cylinder or outside it
+     * is between the bases of the Cylinder or outside it.
      *
-     * @param p Intersection Point
-     * @return the GeoPoint for the cylinder with the p point if it is on the Cylinder, null otherwise
+     * @param p Intersection Point.
+     * @return the GeoPoint for the cylinder with the p point if it is on the Cylinder, null otherwise.
      */
     private GeoPoint checkIntersection(Point p) {
         if (p == null) return null;
@@ -129,10 +129,10 @@ public class Cylinder extends Tube {
     /**
      * Helper function to find an intersection Point with Cylinder's base
      *
-     * @param base   Base of Cylinder
-     * @param ray    Ray to find intersection with
-     * @param center Center Point of Cylinder's base
-     * @return GeoPoint with the cylinder and the point on a base
+     * @param base   Base of Cylinder.
+     * @param ray    Ray to find intersection with.
+     * @param center Center Point of Cylinder's base.
+     * @return GeoPoint with the cylinder and the point on a base.
      */
     private GeoPoint baseIntersection(Plane base, Ray ray, Point center) {
         List<GeoPoint> lst = base.findGeoIntersections(ray); //intersection Points with Plane
