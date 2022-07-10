@@ -52,6 +52,14 @@ public class Camera {
      * Ray tracer field.
      */
     private RayTracerBase rayTracer;
+    /**
+     * Number of threads
+     */
+    private int threadsCount = 1;
+    /**
+     *
+     */
+    private double printInterval = 1;
 
     // ***************** Error messages ********************** //
     private static final String RESOURCE_ERROR = "Renderer resource not set";
@@ -215,13 +223,30 @@ public class Camera {
         // Rendering the image
         int nX = this.imageWriter.getNx();
         int nY = this.imageWriter.getNy();
-        // The row of the pixel in the image.
-        for (int row = 0; row < nY; row++) {
-            // The column of the pixel in the image.
-            for (int col = 0; col < nX; col++) {
-                Color pixelColor = castRay(nX, nY, col, row);
-                this.imageWriter.writePixel(col, row, pixelColor);
+        // Checking if we try to use threads.
+        if(threadsCount == 1) {
+            //rendering image without using of threads (by-default)
+            // The row of the pixel in the image.
+            for (int row = 0; row < nY; row++) {
+                // The column of the pixel in the image.
+                for (int col = 0; col < nX; col++) {
+                    Color pixelColor = castRay(nX, nY, col, row);
+                    this.imageWriter.writePixel(col, row, pixelColor);
+                }
             }
+        } else{
+            //rendering image with using of threads
+            Pixel.initialize(nY, nX, printInterval);
+            while (threadsCount-- > 0) {
+                new Thread(() -> {
+                    for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()) {
+                        Color pixelColor = castRay(nX, nY, pixel.col, pixel.row);
+                        imageWriter.writePixel(pixel.col, pixel.row, pixelColor);
+                    }
+
+                }).start();
+            }
+            Pixel.waitToFinish();
         }
         return this;
     }
@@ -260,5 +285,15 @@ public class Camera {
                     this.imageWriter.writePixel(row, col, color);
             }
         }
+    }
+
+    public Camera setDebugPrint(double k) {
+        this.printInterval = k;
+        return this;
+    }
+
+    public Camera setMultithreading(int n) {
+        this.threadsCount = n;
+        return this;
     }
 }

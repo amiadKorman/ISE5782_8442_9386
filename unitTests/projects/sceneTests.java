@@ -20,7 +20,7 @@ public class sceneTests {
     private final Camera camera1 = new Camera(new Point(-1000, 1000, 8000), new Vector(0.13, -0.13, -1),
             new Vector(0, 1, -0.13))
             .setVPSize(150, 150).setVPDistance(1000)
-            .setRayTracer(new RayTracerBasic(scene1));
+            .setRayTracer(new RayTracerBasic(scene1)).setMultithreading(8);
 
     /**
      * set all geometries for test
