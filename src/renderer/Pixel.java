@@ -2,7 +2,7 @@ package renderer;
 
 /**
  * Pixel is a helper class. It is used for multi-threading in the renderer and
- * for follow up its progress.<br/>
+ * for follow up its progress.
  * There is a main follow-up object and several secondary objects - one in each
  * thread.
  * 

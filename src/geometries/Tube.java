@@ -59,19 +59,6 @@ public class Tube extends Geometry{
     }
 
     /**
-     * Overrides the toString method in the Object class.
-     *
-     * @return string that describe the tube.
-     */
-    @Override
-    public String toString() {
-        return "Tube{" +
-                "_axisRay=" + axisRay +
-                ", _radius=" + radius +
-                '}';
-    }
-
-    /**
      * Implementation of getNormal from Geometry.
      *
      * @param point The point on the tube's surface.
@@ -95,6 +82,19 @@ public class Tube extends Geometry{
         Vector normalVector = point.subtract(tubeCenterPoint).normalize();
 
         return normalVector;
+    }
+
+    /**
+     * Overrides the toString method in the Object class.
+     *
+     * @return string that describe the tube.
+     */
+    @Override
+    public String toString() {
+        return "Tube{" +
+                "_axisRay=" + axisRay +
+                ", _radius=" + radius +
+                '}';
     }
 
     /**

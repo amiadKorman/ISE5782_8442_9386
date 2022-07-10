@@ -66,15 +66,6 @@ public class Cylinder extends Tube {
         return height;
     }
 
-    @Override
-    public String toString() {
-        return "Cylinder{" +
-                "height=" + height +
-                ", _axisRay=" + axisRay +
-                ", _radius=" + radius +
-                '}';
-    }
-
     /**
      * Implementation of getNormal from Geometry.
      *
@@ -110,6 +101,15 @@ public class Cylinder extends Tube {
         Vector v = point.subtract(center);
 
         return v.normalize();
+    }
+
+    @Override
+    public String toString() {
+        return "Cylinder{" +
+                "height=" + height +
+                ", _axisRay=" + axisRay +
+                ", _radius=" + radius +
+                '}';
     }
 
     /**
