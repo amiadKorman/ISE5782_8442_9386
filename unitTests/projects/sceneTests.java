@@ -21,11 +21,6 @@ public class sceneTests {
             new Vector(0, 1, -0.13))
             .setVPSize(150, 150).setVPDistance(1000)
             .setRayTracer(new RayTracerBasic(scene1));
-    /**
-     * light position, direction, Color
-     */
-    private final Point spPL = new Point(-50, -50, 25); //position of light Sphere
-    private final Color spCL = new Color(800, 500, 0); //Color of light Sphere
 
     /**
      * set all geometries for test
