@@ -90,7 +90,7 @@ public class Cylinder extends Tube {
         Point centerOfSecondSide = axisRay.getP0().add(axisRay.getDir().scale(height));
 
         //The normal at a base will be simply equal to central ray's
-        //direction vector 𝑣 or opposite to it (−𝑣) so we check it
+        //direction vector v or opposite to it (−v) so we check it
         if (point.equals(centerOfOneSide)) {
             return cylinderCenterVector.scale(-1);
         }

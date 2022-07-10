@@ -57,7 +57,7 @@ public class Camera {
      */
     private int threadsCount = 1;
     /**
-     *
+     * Progress of the rendering.
      */
     private double printInterval = 1;
 
@@ -213,6 +213,8 @@ public class Camera {
 
     /**
      * The function iterates over all the pixels in the image and casts a ray through each pixel
+     *
+     * @return The camera itself.
      */
     public Camera renderImage() {
         // Checks that imageWriter and rayTracer fields isn't empty
@@ -287,11 +289,23 @@ public class Camera {
         }
     }
 
+    /**
+     * This function sets the print interval to the value of the parameter k.
+     *
+     * @param k The interval at which the camera will print its position and rotation.
+     * @return The camera object itself.
+     */
     public Camera setDebugPrint(double k) {
         this.printInterval = k;
         return this;
     }
 
+    /**
+     * Set the number of threads to use for rendering.
+     *
+     * @param n number of threads to use
+     * @return The camera object itself.
+     */
     public Camera setMultithreading(int n) {
         this.threadsCount = n;
         return this;

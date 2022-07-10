@@ -11,11 +11,17 @@ import primitives.*;
 import renderer.*;
 import scene.Scene;
 
+/**
+ * Test rendering scene for Ex. 7
+ */
 public class sceneTests {
+    /**
+     * Main scene
+     */
     private final Scene scene1 = new Scene.SceneBuilder("Test scene").build();
 
     /**
-     * Cameras
+     * Camera
      */
     private final Camera camera1 = new Camera(new Point(-1000, 1000, 8000), new Vector(0.13, -0.13, -1),
             new Vector(0, 1, -0.13))
@@ -25,7 +31,7 @@ public class sceneTests {
     /**
      * set all geometries for test
      *
-     * @return
+     * @return The whole scene.
      */
     private Scene setGeo() {
         // shiny plane
@@ -116,6 +122,9 @@ public class sceneTests {
         return scene1;
     }
 
+    /**
+     * Build and rendered a scene with snowman under shed
+     */
     @Test
     public void bonus10Geo() {
         setGeo().getLights().add(new PointLight(new Color(150, 150, 150), new Point(500, 500, 6000)));
@@ -124,7 +133,6 @@ public class sceneTests {
                 .setRayTracer(new RayTracerBasic(scene1))
                 .renderImage();
         camera1.writeToImage();
-
     }
 
 

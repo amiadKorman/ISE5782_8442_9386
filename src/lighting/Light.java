@@ -16,7 +16,7 @@ public abstract class Light {
     /**
      * Constructor for light class
      *
-     * @param intensity
+     * @param intensity light's intensity
      */
     protected Light(Color intensity){
         this.intensity = intensity;

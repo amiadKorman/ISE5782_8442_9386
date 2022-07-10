@@ -20,6 +20,7 @@ public class DirectionalLight extends Light implements LightSource{
      * Constructor for DirectionalLight class
      *
      * @param intensity The intensity of the color
+     * @param direction The direction of DirectionalLight
      */
     public DirectionalLight(Color intensity, Vector direction) {
         super(intensity);
